@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>goooodapp</title>
+<meta name="description" content="シンプルな iPhone アプリを作っている goooodapp のページです。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Maru+Gothic:wght@700&display=swap">
+<style>
+/* Layout: 一段組の読みもの。アプリの青緑を見出しにだけ使う */
+:root {
+  --paper: #fbfcfb;
+  --ink: #1d2a2c;
+  --muted: #5b6b6e;
+  --line: #d5dedd;
+  --tint: #eef4f3;
+  --accent: #1e6a73;
+  --f-display: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
+  --f-body: "BIZ UDPGothic", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #141b1c; --ink: #e3ebea; --muted: #9aaaa9; --line: #2e3a3b; --tint: #1b2526; --accent: #6fbcc4;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #141b1c; --ink: #e3ebea; --muted: #9aaaa9; --line: #2e3a3b; --tint: #1b2526; --accent: #6fbcc4;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.85; }
+.wrap {
+  max-width: 720px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 72px;
+  display: flex; flex-direction: column; gap: 44px;
+}
+h1, h2, h3 { font-family: var(--f-display); line-height: 1.4; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(28px, 6vw, 38px); }
+h2 { font-size: 22px; color: var(--accent); }
+h3 { font-size: 17px; }
+p { margin: 0; max-width: 65ch; }
+section { display: flex; flex-direction: column; gap: 14px; }
+.lead { color: var(--muted); }
+nav { display: flex; flex-wrap: wrap; gap: 10px; }
+nav a {
+  color: var(--accent); text-decoration: none; border: 1px solid var(--line);
+  border-radius: 99px; padding: 4px 14px; font-size: 15px;
+}
+nav a:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+ul { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 6px; max-width: 65ch; }
+.qa { display: flex; flex-direction: column; gap: 6px; padding-block: 14px; border-top: 1px solid var(--line); }
+.contact { background: var(--tint); border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; }
+.contact .addr { font-weight: 700; user-select: all; word-break: break-all; }
+small { color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:12px">
+    <h1>goooodapp</h1>
+    <p class="lead">毎日の暮らしを少しだけ楽にする、シンプルな iPhone アプリを作っています。</p>
+  </header>
+  <section>
+    <h2>アプリ</h2>
+    <div class="qa">
+      <h3><a href="okusuri/" style="color:inherit">おくすり当番</a></h3>
+      <p>広告なし・サブスクなし。「飲んだ」を押すまで知らせる服薬リマインダー。</p>
+      <nav><a href="okusuri/">サポート</a><a href="okusuri/privacy.html">プライバシーポリシー</a></nav>
+    </div>
+  </section>
+  <section>
+    <h2>お問い合わせ</h2>
+    <div class="contact"><p class="addr">info.goooodapp@gmail.com</p></div>
+  </section>
+</div>
+</body>
+</html>
