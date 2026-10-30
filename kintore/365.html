@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>365日の旬と動物</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Maru+Gothic:wght@700&display=swap">
+<style>
+/* Layout: サポートページと同じ一段組。月ごとの表と、きょうの行の色だけを足す */
+:root {
+  --paper: #fbfcfb;
+  --ink: #1d2a2c;
+  --muted: #5b6b6e;
+  --line: #d5dedd;
+  --tint: #f7eeea;
+  --accent: #c2481f;
+  --f-display: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Hiragino Sans", sans-serif;
+  --f-body: "BIZ UDPGothic", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #141b1c; --ink: #e3ebea; --muted: #9aaaa9; --line: #2e3a3b; --tint: #1b2526; --accent: #f08a5f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #141b1c; --ink: #e3ebea; --muted: #9aaaa9; --line: #2e3a3b; --tint: #1b2526; --accent: #f08a5f;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 64px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.7; }
+.wrap {
+  max-width: 720px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 72px;
+  display: flex; flex-direction: column; gap: 36px;
+}
+h1, h2 { font-family: var(--f-display); line-height: 1.4; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(26px, 6vw, 34px); }
+h2 { font-size: 22px; color: var(--accent); }
+p { margin: 0; max-width: 65ch; }
+header, section { display: flex; flex-direction: column; gap: 12px; }
+.lead { color: var(--muted); }
+nav { position: sticky; top: 0; z-index: 1; background: var(--paper); padding-block: 10px; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--line); }
+nav a { flex: none; color: var(--accent); text-decoration: none; border: 1px solid var(--line); border-radius: 99px; padding: 1px 11px; font-size: 14px; }
+nav a.today { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th { text-align: left; font-size: 13px; color: var(--muted); font-weight: 400; padding: 4px 8px; }
+td { border-top: 1px solid var(--line); padding: 7px 8px; vertical-align: top; }
+td.d { white-space: nowrap; font-variant-numeric: tabular-nums; font-weight: 700; width: 3.6em; }
+td small { display: block; color: var(--muted); font-size: 12px; padding-left: 1.7em; }
+.e { display: inline-block; width: 1.7em; }
+tr.now td { background: var(--tint); }
+tr.now td.d { color: var(--accent); }
+footer { color: var(--muted); font-size: 14px; display: flex; flex-direction: column; gap: 8px; }
+footer a { color: var(--accent); }
+@media (max-width: 480px) {
+  table { font-size: 14px; }
+  td { padding: 6px 4px; }
+  td small { padding-left: 0; }
+  .e { width: 1.4em; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>365日の旬と動物</h1>
+    <p class="lead">よく見つけましたね。ここは、筋トレきろくの裏の一覧です。</p>
+    <p>「きょう」の画面では、その日に挙げた重さを旬のくだもの・やさいで数えます。「記録と成長」では、これまでの合計をその日の動物で数えます。どちらも毎日かわり、1年で365種類が1回ずつ出てきます。</p>
+    <p><small style="color:var(--muted);font-size:14px">重さはどれも目安です。動物は大人の平均的な重さで数えています。うるう年は、2月29日の旬が2月28日と同じになり、3月からの動物が表より1日ずつ先にずれます。</small></p>
+  </header>
+
+  <nav aria-label="月"><a href="#m1">1月</a><a href="#m2">2月</a><a href="#m3">3月</a><a href="#m4">4月</a><a href="#m5">5月</a><a href="#m6">6月</a><a href="#m7">7月</a><a href="#m8">8月</a><a href="#m9">9月</a><a href="#m10">10月</a><a href="#m11">11月</a><a href="#m12">12月</a></nav>
+
+<section id="m1"><h2>1月</h2><table><thead><tr><th>日</th><th>きょうの旬</th><th>きょうの動物</th></tr></thead><tbody>
+<tr id="d1-1"><td class="d">1/1</td><td><span class="e" aria-hidden="true">🥬</span>ちぢみほうれん草<small>ほうれん草・1束 200g</small></td><td><span class="e" aria-hidden="true">🐕</span>ゴールデンレトリバー<small>イヌ・1頭 約30kg</small></td></tr>
+<tr id="d1-2"><td class="d">1/2</td><td><span class="e" aria-hidden="true">🥦</span>カリフラワー<small>1株 600g</small></td><td><span class="e" aria-hidden="true">🦎</span>グリーンイグアナ<small>トカゲ・1匹 約4kg</small></td></tr>
+<tr id="d1-3"><td class="d">1/3</td><td><span class="e" aria-hidden="true">🧅</span>下仁田ねぎ<small>ねぎ・1本 300g</small></td><td><span class="e" aria-hidden="true">🐟</span>マダラ<small>タラ・1尾 約5kg</small></td></tr>
+<tr id="d1-4"><td class="d">1/4</td><td><span class="e" aria-hidden="true">🥬</span>野沢菜<small>1束 500g</small></td><td><span class="e" aria-hidden="true">🐦</span>ウグイス<small>1羽 約20g</small></td></tr>
+<tr id="d1-5"><td class="d">1/5</td><td><span class="e" aria-hidden="true">🍎</span>サンふじ<small>りんご・1個 300g</small></td><td><span class="e" aria-hidden="true">🐾</span>オオアリクイ<small>アリクイ・1頭 約35kg</small></td></tr>
+<tr id="d1-6"><td class="d">1/6</td><td><span class="e" aria-hidden="true">🍊</span>きんかん<small>かんきつ・1個 15g</small></td><td><span class="e" aria-hidden="true">🐠</span>カクレクマノミ<small>クマノミ・1匹 約5g</small></td></tr>
+<tr id="d1-7"><td class="d">1/7</td><td><span class="e" aria-hidden="true">🌰</span>くわい<small>1個 20g</small></td><td><span class="e" aria-hidden="true">🐟</span>ブリ<small>1尾 約8kg</small></td></tr>
+<tr id="d1-8"><td class="d">1/8</td><td><span class="e" aria-hidden="true">🥬</span>芽キャベツ<small>キャベツ・1個 12g</small></td><td><span class="e" aria-hidden="true">🐦</span>タンチョウ<small>ツル・1羽 約9kg</small></td></tr>
+<tr id="d1-9"><td class="d">1/9</td><td><span class="e" aria-hidden="true">🥦</span>ブロッコリー<small>1株 300g</small></td><td><span class="e" aria-hidden="true">🦤</span>ドードー<small>1羽 約15kg</small></td></tr>
+<tr id="d1-10"><td class="d">1/10</td><td><span class="e" aria-hidden="true">🥬</span>小松菜<small>1束 300g</small></td><td><span class="e" aria-hidden="true">🐟</span>ニジマス<small>マス・1尾 約1kg</small></td></tr>
+<tr id="d1-11"><td class="d">1/11</td><td><span class="e" aria-hidden="true">🍠</span>安納芋<small>さつまいも・1本 300g</small></td><td><span class="e" aria-hidden="true">🐻‍❄️</span>ホッキョクグマ<small>クマ・1頭 約450kg</small></td></tr>
+<tr id="d1-12"><td class="d">1/12</td><td><span class="e" aria-hidden="true">🍓</span>とちおとめ<small>いちご・1粒 15g</small></td><td><span class="e" aria-hidden="true">🪲</span>ノコギリクワガタ<small>クワガタ・1匹 約4g</small></td></tr>
+<tr id="d1-13"><td class="d">1/13</td><td><span class="e" aria-hidden="true">🥬</span>白菜<small>1玉 2kg</small></td><td><span class="e" aria-hidden="true">🐢</span>オサガメ<small>カメ・1頭 約500kg</small></td></tr>
+<tr id="d1-14"><td class="d">1/14</td><td><span class="e" aria-hidden="true">🪷</span>れんこん<small>1節 300g</small></td><td><span class="e" aria-hidden="true">🦅</span>イヌワシ<small>ワシ・1羽 約4kg</small></td></tr>
+<tr id="d1-15"><td class="d">1/15</td><td><span class="e" aria-hidden="true">🥬</span>ターサイ<small>1株 300g</small></td><td><span class="e" aria-hidden="true">🐧</span>コウテイペンギン<small>ペンギン・1羽 約30kg</small></td></tr>
+<tr id="d1-16"><td class="d">1/16</td><td><span class="e" aria-hidden="true">🍓</span>スカイベリー<small>いちご・1粒 30g</small></td><td><span class="e" aria-hidden="true">🦌</span>アカシカ<small>シカ・1頭 約200kg</small></td></tr>
+<tr id="d1-17"><td class="d">1/17</td><td><span class="e" aria-hidden="true">🥔</span>里芋<small>1個 50g</small></td><td><span class="e" aria-hidden="true">🦖</span>ティラノサウルス<small>恐竜・1頭 約7㌧</small></td></tr>
+<tr id="d1-18"><td class="d">1/18</td><td><span class="e" aria-hidden="true">🍊</span>みかん<small>1個 100g</small></td><td><span class="e" aria-hidden="true">🐟</span>シロザケ<small>サケ・1尾 約4kg</small></td></tr>
+<tr id="d1-19"><td class="d">1/19</td><td><span class="e" aria-hidden="true">🥕</span>金時にんじん<small>にんじん・1本 200g</small></td><td><span class="e" aria-hidden="true">🐦</span>アオサギ<small>サギ・1羽 約1.5kg</small></td></tr>
+<tr id="d1-20"><td class="d">1/20</td><td><span class="e" aria-hidden="true">🥬</span>水菜<small>1束 200g</small></td><td><span class="e" aria-hidden="true">🐎</span>アラブ<small>ウマ・1頭 約420kg</small></td></tr>
+<tr id="d1-21"><td class="d">1/21</td><td><span class="e" aria-hidden="true">🍐</span>ル レクチエ<small>洋なし・1個 350g</small></td><td><span class="e" aria-hidden="true">🫏</span>ロバ<small>1頭 約200kg</small></td></tr>
+<tr id="d1-22"><td class="d">1/22</td><td><span class="e" aria-hidden="true">🥬</span>ほうれん草<small>1束 250g</small></td><td><span class="e" aria-hidden="true">🐟</span>ピラニア<small>1匹 約500g</small></td></tr>
+<tr id="d1-23"><td class="d">1/23</td><td><span class="e" aria-hidden="true">🍊</span>はるみ<small>かんきつ・1個 200g</small></td><td><span class="e" aria-hidden="true">🦕</span>ステゴサウルス<small>恐竜・1頭 約4㌧</small></td></tr>
+<tr id="d1-24"><td class="d">1/24</td><td><span class="e" aria-hidden="true">🥬</span>聖護院だいこん<small>だいこん・1個 2kg</small></td><td><span class="e" aria-hidden="true">🦎</span>ウーパールーパー<small>1匹 約60g</small></td></tr>
+<tr id="d1-25"><td class="d">1/25</td><td><span class="e" aria-hidden="true">🧅</span>長ねぎ<small>ねぎ・1本 150g</small></td><td><span class="e" aria-hidden="true">🦉</span>メンフクロウ<small>フクロウ・1羽 約350g</small></td></tr>
+<tr id="d1-26"><td class="d">1/26</td><td><span class="e" aria-hidden="true">🥬</span>ちんげん菜<small>1株 100g</small></td><td><span class="e" aria-hidden="true">🪼</span>ミズクラゲ<small>クラゲ・1匹 約200g</small></td></tr>
+<tr id="d1-27"><td class="d">1/27</td><td><span class="e" aria-hidden="true">🍊</span>ポンカン<small>かんきつ・1個 150g</small></td><td><span class="e" aria-hidden="true">🐝</span>オオスズメバチ<small>ハチ・1匹 約2g</small></td></tr>
+<tr id="d1-28"><td class="d">1/28</td><td><span class="e" aria-hidden="true">🍓</span>あまおう<small>いちご・1粒 25g</small></td><td><span class="e" aria-hidden="true">🐾</span>ニホンイタチ<small>イタチ・1匹 約300g</small></td></tr>
+<tr id="d1-29"><td class="d">1/29</td><td><span class="e" aria-hidden="true">🌿</span>ごぼう<small>1本 200g</small></td><td><span class="e" aria-hidden="true">🕊️</span>キジバト<small>ハト・1羽 約250g</small></td></tr>
+<tr id="d1-30"><td class="d">1/30</td><td><span class="e" aria-hidden="true">🥬</span>春菊<small>1束 200g</small></td><td><span class="e" aria-hidden="true">🐻</span>ヒグマ<small>クマ・1頭 約250kg</small></td></tr>
+<tr id="d1-31"><td class="d">1/31</td><td><span class="e" aria-hidden="true">🍊</span>伊予柑<small>かんきつ・1個 250g</small></td><td><span class="e" aria-hidden="true">🐆</span>ピューマ<small>1頭 約60kg</small></td></tr>
+</tbody></table></section>
+<section id="m2"><h2>2月</h2><table><thead><tr><th>日</th><th>きょうの旬</th><th>きょうの動物</th></tr></thead><tbody>
+<tr id="d2-1"><td class="d">2/1</td><td><span class="e" aria-hidden="true">🍊</span>せとか<small>かんきつ・1個 200g</small></td><td><span class="e" aria-hidden="true">🐾</span>オコジョ<small>イタチ・1匹 約200g</small></td></tr>
+<tr id="d2-2"><td class="d">2/2</td><td><span class="e" aria-hidden="true">🥬</span>かき菜<small>1束 200g</small></td><td><span class="e" aria-hidden="true">🐋</span>シロナガスクジラ<small>クジラ・1頭 約100㌧</small></td></tr>
+<tr id="d2-3"><td class="d">2/3</td><td><span class="e" aria-hidden="true">🍊</span>日向夏<small>かんきつ・1個 200g</small></td><td><span class="e" aria-hidden="true">🦚</span>インドクジャク<small>クジャク・1羽 約5kg</small></td></tr>
+<tr id="d2-4"><td class="d">2/4</td><td><span class="e" aria-hidden="true">🧅</span>わけぎ<small>1束 150g</small></td><td><span class="e" aria-hidden="true">🐒</span>ワオキツネザル<small>サル・1匹 約2.5kg</small></td></tr>
+<tr id="d2-5"><td class="d">2/5</td><td><span class="e" aria-hidden="true">🥬</span>三浦だいこん<small>だいこん・1本 2kg</small></td><td><span class="e" aria-hidden="true">🦫</span>カモノハシ<small>1匹 約1.5kg</small></td></tr>
+<tr id="d2-6"><td class="d">2/6</td><td><span class="e" aria-hidden="true">🍋</span>レモン<small>1個 120g</small></td><td><span class="e" aria-hidden="true">🦒</span>オカピ<small>1頭 約250kg</small></td></tr>
+<tr id="d2-7"><td class="d">2/7</td><td><span class="e" aria-hidden="true">🍊</span>たんかん<small>かんきつ・1個 150g</small></td><td><span class="e" aria-hidden="true">🐟</span>ニシキゴイ<small>コイ・1匹 約5kg</small></td></tr>
+<tr id="d2-8"><td class="d">2/8</td><td><span class="e" aria-hidden="true">🥦</span>茎ブロッコリー<small>ブロッコリー・1本 20g</small></td><td><span class="e" aria-hidden="true">🦆</span>オシドリ<small>カモ・1羽 約500g</small></td></tr>
+<tr id="d2-9"><td class="d">2/9</td><td><span class="e" aria-hidden="true">🍊</span>デコポン<small>かんきつ・1個 250g</small></td><td><span class="e" aria-hidden="true">🦊</span>フェネック<small>キツネ・1匹 約1.2kg</small></td></tr>
+<tr id="d2-10"><td class="d">2/10</td><td><span class="e" aria-hidden="true">🥬</span>菜の花<small>1束 200g</small></td><td><span class="e" aria-hidden="true">🦭</span>ゴマフアザラシ<small>アザラシ・1頭 約90kg</small></td></tr>
+<tr id="d2-11"><td class="d">2/11</td><td><span class="e" aria-hidden="true">🍓</span>章姫<small>いちご・1粒 20g</small></td><td><span class="e" aria-hidden="true">🐝</span>ミツバチ<small>ハチ・1匹 約0.1g</small></td></tr>
+<tr id="d2-12"><td class="d">2/12</td><td><span class="e" aria-hidden="true">🍊</span>清見<small>かんきつ・1個 200g</small></td><td><span class="e" aria-hidden="true">🦀</span>タカアシガニ<small>カニ・1杯 約10kg</small></td></tr>
+<tr id="d2-13"><td class="d">2/13</td><td><span class="e" aria-hidden="true">🍓</span>紅ほっぺ<small>いちご・1粒 20g</small></td><td><span class="e" aria-hidden="true">🐂</span>エランド<small>1頭 約600kg</small></td></tr>
+<tr id="d2-14"><td class="d">2/14</td><td><span class="e" aria-hidden="true">🍊</span>ネーブル<small>オレンジ・1個 250g</small></td><td><span class="e" aria-hidden="true">🐦</span>キジ<small>1羽 約1kg</small></td></tr>
+<tr id="d2-15"><td class="d">2/15</td><td><span class="e" aria-hidden="true">🌱</span>せり<small>1束 100g</small></td><td><span class="e" aria-hidden="true">🐡</span>トラフグ<small>フグ・1尾 約1.5kg</small></td></tr>
+<tr id="d2-16"><td class="d">2/16</td><td><span class="e" aria-hidden="true">🍊</span>文旦<small>かんきつ・1個 500g</small></td><td><span class="e" aria-hidden="true">🐢</span>ガラパゴスゾウガメ<small>カメ・1頭 約250kg</small></td></tr>
+<tr id="d2-17"><td class="d">2/17</td><td><span class="e" aria-hidden="true">🥬</span>聖護院かぶ<small>かぶ・1個 1kg</small></td><td><span class="e" aria-hidden="true">🦎</span>オオサンショウウオ<small>サンショウウオ・1匹 約25kg</small></td></tr>
+<tr id="d2-18"><td class="d">2/18</td><td><span class="e" aria-hidden="true">🍓</span>さがほのか<small>いちご・1粒 20g</small></td><td><span class="e" aria-hidden="true">🦢</span>オオハクチョウ<small>ハクチョウ・1羽 約10kg</small></td></tr>
+<tr id="d2-19"><td class="d">2/19</td><td><span class="e" aria-hidden="true">🍊</span>甘夏<small>かんきつ・1個 400g</small></td><td><span class="e" aria-hidden="true">🦝</span>タヌキ<small>1匹 約5kg</small></td></tr>
+<tr id="d2-20"><td class="d">2/20</td><td><span class="e" aria-hidden="true">🍓</span>ゆめのか<small>いちご・1粒 20g</small></td><td><span class="e" aria-hidden="true">🦐</span>甘エビ<small>エビ・1尾 約8g</small></td></tr>
+<tr id="d2-21"><td class="d">2/21</td><td><span class="e" aria-hidden="true">🥬</span>のらぼう菜<small>1束 200g</small></td><td><span class="e" aria-hidden="true">🐟</span>ヒラメ<small>1尾 約2kg</small></td></tr>
+<tr id="d2-22"><td class="d">2/22</td><td><span class="e" aria-hidden="true">🥕</span>雪下にんじん<small>にんじん・1本 200g</small></td><td><span class="e" aria-hidden="true">🐦‍⬛</span>ハシブトガラス<small>カラス・1羽 約700g</small></td></tr>
+<tr id="d2-23"><td class="d">2/23</td><td><span class="e" aria-hidden="true">🥬</span>冬キャベツ<small>キャベツ・1玉 1.3kg</small></td><td><span class="e" aria-hidden="true">🦈</span>ジンベエザメ<small>サメ・1匹 約15㌧</small></td></tr>
+<tr id="d2-24"><td class="d">2/24</td><td><span class="e" aria-hidden="true">🍋</span>ゆず<small>1個 120g</small></td><td><span class="e" aria-hidden="true">🐟</span>ホッケ<small>1尾 約500g</small></td></tr>
+<tr id="d2-25"><td class="d">2/25</td><td><span class="e" aria-hidden="true">🍊</span>はっさく<small>かんきつ・1個 400g</small></td><td><span class="e" aria-hidden="true">🪿</span>ガチョウ<small>1羽 約5kg</small></td></tr>
+<tr id="d2-26"><td class="d">2/26</td><td><span class="e" aria-hidden="true">🌱</span>ふきのとう<small>1個 10g</small></td><td><span class="e" aria-hidden="true">🕷️</span>ジョロウグモ<small>クモ・1匹 約0.5g</small></td></tr>
+<tr id="d2-27"><td class="d">2/27</td><td><span class="e" aria-hidden="true">🍓</span>やよいひめ<small>いちご・1粒 25g</small></td><td><span class="e" aria-hidden="true">🐻</span>マレーグマ<small>クマ・1頭 約50kg</small></td></tr>
+<tr id="d2-28"><td class="d">2/28</td><td><span class="e" aria-hidden="true">🥦</span>ロマネスコ<small>1株 500g</small></td><td><span class="e" aria-hidden="true">🐦</span>文鳥<small>1羽 約25g</small></td></tr>
+</tbody></table></section>
+<section id="m3"><h2>3月</h2><table><thead><tr><th>日</th><th>きょうの旬</th><th>きょうの動物</th></tr></thead><tbody>
+<tr id="d3-1"><td class="d">3/1</td><td><span class="e" aria-hidden="true">🍊</span>はるか<small>かんきつ・1個 200g</small></td><td><span class="e" aria-hidden="true">🐔</span>ニワトリ<small>1羽 約2.5kg</small></td></tr>
+<tr id="d3-2"><td class="d">3/2</td><td><span class="e" aria-hidden="true">🍄</span>しいたけ<small>きのこ・1個 20g</small></td><td><span class="e" aria-hidden="true">🐑</span>メリノ<small>ヒツジ・1頭 約70kg</small></td></tr>
+<tr id="d3-3"><td class="d">3/3</td><td><span class="e" aria-hidden="true">🌿</span>クレソン<small>1束 50g</small></td><td><span class="e" aria-hidden="true">🦆</span>アヒル<small>1羽 約3kg</small></td></tr>
+<tr id="d3-4"><td class="d">3/4</td><td><span class="e" aria-hidden="true">🧅</span>エシャレット<small>1本 10g</small></td><td><span class="e" aria-hidden="true">🐈</span>ベンガル<small>ネコ・1匹 約5kg</small></td></tr>
+<tr id="d3-5"><td class="d">3/5</td><td><span class="e" aria-hidden="true">🌱</span>ぜんまい<small>1束 200g</small></td><td><span class="e" aria-hidden="true">🐤</span>カナリア<small>1羽 約20g</small></td></tr>
+<tr id="d3-6"><td class="d">3/6</td><td><span class="e" aria-hidden="true">🥬</span>あしたば<small>1束 150g</small></td><td><span class="e" aria-hidden="true">🐧</span>フンボルトペンギン<small>ペンギン・1羽 約4.5kg</small></td></tr>
+<tr id="d3-7"><td class="d">3/7</td><td><span class="e" aria-hidden="true">🌱</span>うど<small>1本 300g</small></td><td><span class="e" aria-hidden="true">🦌</span>トナカイ<small>シカ・1頭 約120kg</small></td></tr>
+<tr id="d3-8"><td class="d">3/8</td><td><span class="e" aria-hidden="true">🫛</span>さやえんどう<small>1さや 3g</small></td><td><span class="e" aria-hidden="true">🦗</span>トノサマバッタ<small>バッタ・1匹 約2g</small></td></tr>
+<tr id="d3-9"><td class="d">3/9</td><td><span class="e" aria-hidden="true">🥬</span>ルッコラ<small>1束 50g</small></td><td><span class="e" aria-hidden="true">🦌</span>インパラ<small>1頭 約50kg</small></td></tr>
+<tr id="d3-10"><td class="d">3/10</td><td><span class="e" aria-hidden="true">🥕</span>新にんじん<small>にんじん・1本 150g</small></td><td><span class="e" aria-hidden="true">🐐</span>ニホンカモシカ<small>1頭 約40kg</small></td></tr>
+<tr id="d3-11"><td class="d">3/11</td><td><span class="e" aria-hidden="true">🌱</span>わらび<small>1束 200g</small></td><td><span class="e" aria-hidden="true">🐆</span>ヒョウ<small>1頭 約60kg</small></td></tr>
+<tr id="d3-12"><td class="d">3/12</td><td><span class="e" aria-hidden="true">🫛</span>グリーンピース<small>1粒 0.4g</small></td><td><span class="e" aria-hidden="true">🐄</span>黒毛和牛<small>ウシ・1頭 約700kg</small></td></tr>
+<tr id="d3-13"><td class="d">3/13</td><td><span class="e" aria-hidden="true">🥬</span>春キャベツ<small>キャベツ・1玉 1kg</small></td><td><span class="e" aria-hidden="true">🦂</span>ダイオウサソリ<small>サソリ・1匹 約30g</small></td></tr>
+<tr id="d3-14"><td class="d">3/14</td><td><span class="e" aria-hidden="true">🌱</span>たらの芽<small>1個 10g</small></td><td><span class="e" aria-hidden="true">🐦</span>ヤンバルクイナ<small>クイナ・1羽 約400g</small></td></tr>
+<tr id="d3-15"><td class="d">3/15</td><td><span class="e" aria-hidden="true">🍓</span>淡雪<small>いちご・1粒 20g</small></td><td><span class="e" aria-hidden="true">🐟</span>タツノオトシゴ<small>1匹 約5g</small></td></tr>
+<tr id="d3-16"><td class="d">3/16</td><td><span class="e" aria-hidden="true">🧄</span>行者にんにく<small>にんにく・1束 100g</small></td><td><span class="e" aria-hidden="true">🐃</span>スイギュウ<small>ウシ・1頭 約800kg</small></td></tr>
+<tr id="d3-17"><td class="d">3/17</td><td><span class="e" aria-hidden="true">🍊</span>河内晩柑<small>かんきつ・1個 400g</small></td><td><span class="e" aria-hidden="true">🐟</span>シシャモ<small>1尾 約25g</small></td></tr>
+<tr id="d3-18"><td class="d">3/18</td><td><span class="e" aria-hidden="true">🍓</span>いちごさん<small>いちご・1粒 25g</small></td><td><span class="e" aria-hidden="true">🐦</span>ヒクイドリ<small>1羽 約50kg</small></td></tr>
+<tr id="d3-19"><td class="d">3/19</td><td><span class="e" aria-hidden="true">🍊</span>スイートスプリング<small>かんきつ・1個 250g</small></td><td><span class="e" aria-hidden="true">🦡</span>アナグマ<small>1匹 約10kg</small></td></tr>
+<tr id="d3-20"><td class="d">3/20</td><td><span class="e" aria-hidden="true">🧅</span>新玉ねぎ<small>玉ねぎ・1個 250g</small></td><td><span class="e" aria-hidden="true">🦐</span>クルマエビ<small>エビ・1尾 約30g</small></td></tr>
+<tr id="d3-21"><td class="d">3/21</td><td><span class="e" aria-hidden="true">🌱</span>こごみ<small>1束 100g</small></td><td><span class="e" aria-hidden="true">🐦</span>ナベヅル<small>ツル・1羽 約3.5kg</small></td></tr>
+<tr id="d3-22"><td class="d">3/22</td><td><span class="e" aria-hidden="true">🥬</span>サニーレタス<small>レタス・1株 300g</small></td><td><span class="e" aria-hidden="true">🦌</span>エゾシカ<small>シカ・1頭 約120kg</small></td></tr>
+<tr id="d3-23"><td class="d">3/23</td><td><span class="e" aria-hidden="true">🍓</span>女峰<small>いちご・1粒 15g</small></td><td><span class="e" aria-hidden="true">🦞</span>アメリカンロブスター<small>エビ・1尾 約1kg</small></td></tr>
+<tr id="d3-24"><td class="d">3/24</td><td><span class="e" aria-hidden="true">🍊</span>安政柑<small>かんきつ・1個 1kg</small></td><td><span class="e" aria-hidden="true">🦆</span>マガモ<small>カモ・1羽 約1.1kg</small></td></tr>
+<tr id="d3-25"><td class="d">3/25</td><td><span class="e" aria-hidden="true">🌿</span>三つ葉<small>1束 50g</small></td><td><span class="e" aria-hidden="true">🐇</span>ネザーランドドワーフ<small>ウサギ・1匹 約1kg</small></td></tr>
+<tr id="d3-26"><td class="d">3/26</td><td><span class="e" aria-hidden="true">🍓</span>かおり野<small>いちご・1粒 20g</small></td><td><span class="e" aria-hidden="true">🐛</span>カイコ<small>1匹 約3g</small></td></tr>
+<tr id="d3-27"><td class="d">3/27</td><td><span class="e" aria-hidden="true">🥔</span>新じゃが<small>じゃがいも・1個 80g</small></td><td><span class="e" aria-hidden="true">🐕</span>グレートデーン<small>イヌ・1頭 約60kg</small></td></tr>
+<tr id="d3-28"><td class="d">3/28</td><td><span class="e" aria-hidden="true">🌱</span>つくし<small>1本 2g</small></td><td><span class="e" aria-hidden="true">🐟</span>ハタハタ<small>1尾 約50g</small></td></tr>
+<tr id="d3-29"><td class="d">3/29</td><td><span class="e" aria-hidden="true">🍊</span>ブラッドオレンジ<small>オレンジ・1個 200g</small></td><td><span class="e" aria-hidden="true">🐒</span>テナガザル<small>サル・1匹 約6kg</small></td></tr>
+<tr id="d3-30"><td class="d">3/30</td><td><span class="e" aria-hidden="true">🍓</span>恋みのり<small>いちご・1粒 20g</small></td><td><span class="e" aria-hidden="true">🐦</span>モモイロペリカン<small>ペリカン・1羽 約10kg</small></td></tr>
+<tr id="d3-31"><td class="d">3/31</td><td><span class="e" aria-hidden="true">🌱</span>ふき<small>1本 50g</small></td><td><span class="e" aria-hidden="true">🐒</span>リスザル<small>サル・1匹 約800g</small></td></tr>
+</tbody></table></section>
+<section id="m4"><h2>4月</h2><table><thead><tr><th>日</th><th>きょうの旬</th><th>きょうの動物</th></tr></thead><tbody>
+<tr id="d4-1"><td class="d">4/1</td><td><span class="e" aria-hidden="true">🧄</span>にんにくの芽<small>にんにく・1本 10g</small></td><td><span class="e" aria-hidden="true">🐙</span>マダコ<small>タコ・1杯 約1.5kg</small></td></tr>
+<tr id="d4-2"><td class="d">4/2</td><td><span class="e" aria-hidden="true">🍈</span>アールスメロン<small>メロン・1玉 1.5kg</small></td><td><span class="e" aria-hidden="true">🐁</span>ハツカネズミ<small>ネズミ・1匹 約20g</small></td></tr>
+<tr id="d4-3"><td class="d">4/3</td><td><span class="e" aria-hidden="true">🍊</span>晩白柚<small>かんきつ・1個 2kg</small></td><td><span class="e" aria-hidden="true">🐈</span>スコティッシュフォールド<small>ネコ・1匹 約4kg</small></td></tr>
+<tr id="d4-4"><td class="d">4/4</td><td><span class="e" aria-hidden="true">🍓</span>天使の実<small>いちご・1粒 20g</small></td><td><span class="e" aria-hidden="true">🐕</span>セントバーナード<small>イヌ・1頭 約75kg</small></td></tr>
+<tr id="d4-5"><td class="d">4/5</td><td><span class="e" aria-hidden="true">🫛</span>そら豆<small>1さや 30g</small></td><td><span class="e" aria-hidden="true">🐄</span>ジャージー<small>ウシ・1頭 約450kg</small></td></tr>
+<tr id="d4-6"><td class="d">4/6</td><td><span class="e" aria-hidden="true">🥬</span>ロメインレタス<small>レタス・1株 400g</small></td><td><span class="e" aria-hidden="true">🐟</span>シーラカンス<small>1匹 約80kg</small></td></tr>
+<tr id="d4-7"><td class="d">4/7</td><td><span class="e" aria-hidden="true">🌱</span>アスパラガス<small>1本 25g</small></td><td><span class="e" aria-hidden="true">🐍</span>ハブ<small>ヘビ・1匹 約800g</small></td></tr>
+<tr id="d4-8"><td class="d">4/8</td><td><span class="e" aria-hidden="true">🍊</span>グレープフルーツ<small>1個 350g</small></td><td><span class="e" aria-hidden="true">🐿️</span>シマリス<small>リス・1匹 約100g</small></td></tr>
+<tr id="d4-9"><td class="d">4/9</td><td><span class="e" aria-hidden="true">🥬</span>からし菜<small>1束 200g</small></td><td><span class="e" aria-hidden="true">🐩</span>トイプードル<small>イヌ・1匹 約3kg</small></td></tr>
+<tr id="d4-10"><td class="d">4/10</td><td><span class="e" aria-hidden="true">🌿</span>葉わさび<small>わさび・1束 50g</small></td><td><span class="e" aria-hidden="true">🐚</span>オオシャコガイ<small>貝・1個 約200kg</small></td></tr>
+<tr id="d4-11"><td class="d">4/11</td><td><span class="e" aria-hidden="true">🍓</span>よつぼし<small>いちご・1粒 20g</small></td><td><span class="e" aria-hidden="true">🦑</span>ホタルイカ<small>イカ・1杯 約10g</small></td></tr>
+<tr id="d4-12"><td class="d">4/12</td><td><span class="e" aria-hidden="true">🌱</span>豆苗<small>1袋 100g</small></td><td><span class="e" aria-hidden="true">🐾</span>ブチハイエナ<small>ハイエナ・1頭 約60kg</small></td></tr>
+<tr id="d4-13"><td class="d">4/13</td><td><span class="e" aria-hidden="true">🍓</span>まりひめ<small>いちご・1粒 20g</small></td><td><span class="e" aria-hidden="true">🦬</span>アメリカバイソン<small>ウシ・1頭 約700kg</small></td></tr>
+<tr id="d4-14"><td class="d">4/14</td><td><span class="e" aria-hidden="true">🌱</span>のびる<small>1本 5g</small></td><td><span class="e" aria-hidden="true">🦑</span>スルメイカ<small>イカ・1杯 約300g</small></td></tr>
+<tr id="d4-15"><td class="d">4/15</td><td><span class="e" aria-hidden="true">🥬</span>わさび菜<small>1束 100g</small></td><td><span class="e" aria-hidden="true">🐅</span>ベンガルトラ<small>トラ・1頭 約220kg</small></td></tr>
+<tr id="d4-16"><td class="d">4/16</td><td><span class="e" aria-hidden="true">🍈</span>プリンスメロン<small>メロン・1玉 600g</small></td><td><span class="e" aria-hidden="true">🐈‍⬛</span>ロシアンブルー<small>ネコ・1匹 約4kg</small></td></tr>
+<tr id="d4-17"><td class="d">4/17</td><td><span class="e" aria-hidden="true">🍓</span>おいCベリー<small>いちご・1粒 25g</small></td><td><span class="e" aria-hidden="true">🐧</span>ジェンツーペンギン<small>ペンギン・1羽 約6kg</small></td></tr>
+<tr id="d4-18"><td class="d">4/18</td><td><span class="e" aria-hidden="true">🫛</span>スナップえんどう<small>1さや 10g</small></td><td><span class="e" aria-hidden="true">🦋</span>オオムラサキ<small>チョウ・1匹 約0.8g</small></td></tr>
+<tr id="d4-19"><td class="d">4/19</td><td><span class="e" aria-hidden="true">🌱</span>ラディッシュ<small>だいこん・1個 10g</small></td><td><span class="e" aria-hidden="true">🐕</span>ブルドッグ<small>イヌ・1匹 約23kg</small></td></tr>
+<tr id="d4-20"><td class="d">4/20</td><td><span class="e" aria-hidden="true">🍊</span>カラマンダリン<small>かんきつ・1個 150g</small></td><td><span class="e" aria-hidden="true">🐀</span>ハダカデバネズミ<small>ネズミ・1匹 約35g</small></td></tr>
+<tr id="d4-21"><td class="d">4/21</td><td><span class="e" aria-hidden="true">🥬</span>レタス<small>1玉 400g</small></td><td><span class="e" aria-hidden="true">🦎</span>コモドドラゴン<small>トカゲ・1頭 約70kg</small></td></tr>
+<tr id="d4-22"><td class="d">4/22</td><td><span class="e" aria-hidden="true">🫛</span>うすいえんどう<small>えんどう・1さや 6g</small></td><td><span class="e" aria-hidden="true">🐧</span>イワトビペンギン<small>ペンギン・1羽 約2.5kg</small></td></tr>
+<tr id="d4-23"><td class="d">4/23</td><td><span class="e" aria-hidden="true">🎍</span>たけのこ<small>1本 1kg</small></td><td><span class="e" aria-hidden="true">🐊</span>アメリカアリゲーター<small>ワニ・1頭 約300kg</small></td></tr>
+<tr id="d4-24"><td class="d">4/24</td><td><span class="e" aria-hidden="true">🌱</span>うるい<small>1束 100g</small></td><td><span class="e" aria-hidden="true">🐜</span>クロオオアリ<small>アリ・1匹 約0.01g</small></td></tr>
+<tr id="d4-25"><td class="d">4/25</td><td><span class="e" aria-hidden="true">🍊</span>セミノール<small>かんきつ・1個 200g</small></td><td><span class="e" aria-hidden="true">🐒</span>メガネザル<small>サル・1匹 約120g</small></td></tr>
+<tr id="d4-26"><td class="d">4/26</td><td><span class="e" aria-hidden="true">🌿</span>あさつき<small>1束 50g</small></td><td><span class="e" aria-hidden="true">🐠</span>ナポレオンフィッシュ<small>1匹 約50kg</small></td></tr>
+<tr id="d4-27"><td class="d">4/27</td><td><span class="e" aria-hidden="true">🥬</span>紫キャベツ<small>キャベツ・1玉 1kg</small></td><td><span class="e" aria-hidden="true">🐋</span>セミクジラ<small>クジラ・1頭 約60㌧</small></td></tr>
+<tr id="d4-28"><td class="d">4/28</td><td><span class="e" aria-hidden="true">🧅</span>葉玉ねぎ<small>玉ねぎ・1本 150g</small></td><td><span class="e" aria-hidden="true">🐆</span>ジャガー<small>1頭 約90kg</small></td></tr>
+<tr id="d4-29"><td class="d">4/29</td><td><span class="e" aria-hidden="true">🌿</span>新ごぼう<small>ごぼう・1本 100g</small></td><td><span class="e" aria-hidden="true">🦣</span>ナウマンゾウ<small>ゾウ・1頭 約4㌧</small></td></tr>
+<tr id="d4-30"><td class="d">4/30</td><td><span class="e" aria-hidden="true">🥬</span>サラダ菜<small>1株 100g</small></td><td><span class="e" aria-hidden="true">🦀</span>ズワイガニ<small>カニ・1杯 約800g</small></td></tr>
+</tbody></table></section>
+<section id="m5"><h2>5月</h2><table><thead><tr><th>日</th><th>きょうの旬</th><th>きょうの動物</th></tr></thead><tbody>
+<tr id="d5-1"><td class="d">5/1</td><td><span class="e" aria-hidden="true">🍅</span>桃太郎<small>トマト・1個 200g</small></td><td><span class="e" aria-hidden="true">🐦</span>アホウドリ<small>1羽 約7kg</small></td></tr>
+<tr id="d5-2"><td class="d">5/2</td><td><span class="e" aria-hidden="true">🫛</span>モロッコいんげん<small>いんげん・1本 15g</small></td><td><span class="e" aria-hidden="true">🐈</span>三毛猫<small>ネコ・1匹 約4kg</small></td></tr>
+<tr id="d5-3"><td class="d">5/3</td><td><span class="e" aria-hidden="true">🥬</span>ケール<small>1枚 50g</small></td><td><span class="e" aria-hidden="true">🐆</span>ユキヒョウ<small>ヒョウ・1頭 約45kg</small></td></tr>
+<tr id="d5-4"><td class="d">5/4</td><td><span class="e" aria-hidden="true">🌽</span>ヤングコーン<small>とうもろこし・1本 10g</small></td><td><span class="e" aria-hidden="true">🐕</span>リカオン<small>1匹 約25kg</small></td></tr>
+<tr id="d5-5"><td class="d">5/5</td><td><span class="e" aria-hidden="true">🍄</span>マッシュルーム<small>きのこ・1個 15g</small></td><td><span class="e" aria-hidden="true">🐼</span>レッサーパンダ<small>1匹 約5kg</small></td></tr>
+<tr id="d5-6"><td class="d">5/6</td><td><span class="e" aria-hidden="true">🍈</span>夕張メロン<small>メロン・1玉 1.5kg</small></td><td><span class="e" aria-hidden="true">🐋</span>イッカク<small>クジラ・1頭 約1.2㌧</small></td></tr>
+<tr id="d5-7"><td class="d">5/7</td><td><span class="e" aria-hidden="true">🥬</span>ふだん草<small>1束 200g</small></td><td><span class="e" aria-hidden="true">🐟</span>マンボウ<small>1匹 約1㌧</small></td></tr>
+<tr id="d5-8"><td class="d">5/8</td><td><span class="e" aria-hidden="true">🍈</span>クインシーメロン<small>メロン・1玉 1.2kg</small></td><td><span class="e" aria-hidden="true">🦅</span>オオワシ<small>ワシ・1羽 約7kg</small></td></tr>
+<tr id="d5-9"><td class="d">5/9</td><td><span class="e" aria-hidden="true">🧅</span>ペコロス<small>玉ねぎ・1個 30g</small></td><td><span class="e" aria-hidden="true">🕷️</span>タランチュラ<small>1匹 約30g</small></td></tr>
+<tr id="d5-10"><td class="d">5/10</td><td><span class="e" aria-hidden="true">🍅</span>ファーストトマト<small>トマト・1個 200g</small></td><td><span class="e" aria-hidden="true">🐕</span>ダックスフンド<small>イヌ・1匹 約5kg</small></td></tr>
+<tr id="d5-11"><td class="d">5/11</td><td><span class="e" aria-hidden="true">🥬</span>サンチュ<small>1枚 10g</small></td><td><span class="e" aria-hidden="true">🐓</span>チャボ<small>ニワトリ・1羽 約700g</small></td></tr>
+<tr id="d5-12"><td class="d">5/12</td><td><span class="e" aria-hidden="true">🌱</span>かいわれ大根<small>だいこん・1パック 50g</small></td><td><span class="e" aria-hidden="true">🐾</span>マレーバク<small>バク・1頭 約300kg</small></td></tr>
+<tr id="d5-13"><td class="d">5/13</td><td><span class="e" aria-hidden="true">🍓</span>宝交早生<small>いちご・1粒 15g</small></td><td><span class="e" aria-hidden="true">🐻</span>グリズリー<small>クマ・1頭 約300kg</small></td></tr>
+<tr id="d5-14"><td class="d">5/14</td><td><span class="e" aria-hidden="true">🌱</span>ホワイトアスパラ<small>アスパラガス・1本 30g</small></td><td><span class="e" aria-hidden="true">🐦</span>ウズラ<small>1羽 約120g</small></td></tr>
+<tr id="d5-15"><td class="d">5/15</td><td><span class="e" aria-hidden="true">🍈</span>アンデスメロン<small>メロン・1玉 1.2kg</small></td><td><span class="e" aria-hidden="true">🐾</span>ミーアキャット<small>マングース・1匹 約700g</small></td></tr>
+<tr id="d5-16"><td class="d">5/16</td><td><span class="e" aria-hidden="true">🍍</span>ピーチパイン<small>パイナップル・1個 1kg</small></td><td><span class="e" aria-hidden="true">🫎</span>ヘラジカ<small>シカ・1頭 約500kg</small></td></tr>
+<tr id="d5-17"><td class="d">5/17</td><td><span class="e" aria-hidden="true">🥒</span>四葉きゅうり<small>きゅうり・1本 150g</small></td><td><span class="e" aria-hidden="true">🐸</span>ヒキガエル<small>カエル・1匹 約200g</small></td></tr>
+<tr id="d5-18"><td class="d">5/18</td><td><span class="e" aria-hidden="true">🍅</span>ミニトマト<small>トマト・1粒 15g</small></td><td><span class="e" aria-hidden="true">🐳</span>コククジラ<small>クジラ・1頭 約30㌧</small></td></tr>
+<tr id="d5-19"><td class="d">5/19</td><td><span class="e" aria-hidden="true">🍑</span>田中びわ<small>びわ・1個 70g</small></td><td><span class="e" aria-hidden="true">🦕</span>トリケラトプス<small>恐竜・1頭 約6㌧</small></td></tr>
+<tr id="d5-20"><td class="d">5/20</td><td><span class="e" aria-hidden="true">🍈</span>イバラキング<small>メロン・1玉 1.5kg</small></td><td><span class="e" aria-hidden="true">🐈</span>ペルシャ<small>ネコ・1匹 約5kg</small></td></tr>
+<tr id="d5-21"><td class="d">5/21</td><td><span class="e" aria-hidden="true">🥬</span>グリーンリーフ<small>レタス・1株 300g</small></td><td><span class="e" aria-hidden="true">🐟</span>マガレイ<small>カレイ・1尾 約400g</small></td></tr>
+<tr id="d5-22"><td class="d">5/22</td><td><span class="e" aria-hidden="true">🍑</span>茂木びわ<small>びわ・1個 50g</small></td><td><span class="e" aria-hidden="true">🐤</span>ヒヨコ<small>ニワトリ・1羽 約40g</small></td></tr>
+<tr id="d5-23"><td class="d">5/23</td><td><span class="e" aria-hidden="true">🌿</span>セロリ<small>1株 1kg</small></td><td><span class="e" aria-hidden="true">🦣</span>マンモス<small>1頭 約6㌧</small></td></tr>
+<tr id="d5-24"><td class="d">5/24</td><td><span class="e" aria-hidden="true">🧅</span>赤玉ねぎ<small>玉ねぎ・1個 250g</small></td><td><span class="e" aria-hidden="true">🐬</span>カマイルカ<small>イルカ・1頭 約100kg</small></td></tr>
+<tr id="d5-25"><td class="d">5/25</td><td><span class="e" aria-hidden="true">🧄</span>新にんにく<small>にんにく・1個 60g</small></td><td><span class="e" aria-hidden="true">🐟</span>キンメダイ<small>1尾 約1kg</small></td></tr>
+<tr id="d5-26"><td class="d">5/26</td><td><span class="e" aria-hidden="true">🥒</span>ズッキーニ<small>1本 200g</small></td><td><span class="e" aria-hidden="true">🦇</span>アブラコウモリ<small>コウモリ・1匹 約7g</small></td></tr>
+<tr id="d5-27"><td class="d">5/27</td><td><span class="e" aria-hidden="true">🌿</span>パクチー<small>1束 50g</small></td><td><span class="e" aria-hidden="true">🐟</span>イワナ<small>1尾 約300g</small></td></tr>
+<tr id="d5-28"><td class="d">5/28</td><td><span class="e" aria-hidden="true">🫚</span>新しょうが<small>しょうが・1個 100g</small></td><td><span class="e" aria-hidden="true">🐹</span>モルモット<small>1匹 約1kg</small></td></tr>
+<tr id="d5-29"><td class="d">5/29</td><td><span class="e" aria-hidden="true">🍅</span>フルーツトマト<small>トマト・1個 50g</small></td><td><span class="e" aria-hidden="true">🐟</span>メカジキ<small>カジキ・1尾 約150kg</small></td></tr>
+<tr id="d5-30"><td class="d">5/30</td><td><span class="e" aria-hidden="true">🧅</span>らっきょう<small>1粒 5g</small></td><td><span class="e" aria-hidden="true">🪲</span>ヘラクレスオオカブト<small>カブトムシ・1匹 約30g</small></td></tr>
+<tr id="d5-31"><td class="d">5/31</td><td><span class="e" aria-hidden="true">🥒</span>きゅうり<small>1本 100g</small></td><td><span class="e" aria-hidden="true">🐬</span>バンドウイルカ<small>イルカ・1頭 約250kg</small></td></tr>
+</tbody></table></section>
+<section id="m6"><h2>6月</h2><table><thead><tr><th>日</th><th>きょうの旬</th><th>きょうの動物</th></tr></thead><tbody>
+<tr id="d6-1"><td class="d">6/1</td><td><span class="e" aria-hidden="true">🌽</span>ゴールドラッシュ<small>とうもろこし・1本 400g</small></td><td><span class="e" aria-hidden="true">🐦</span>ライチョウ<small>1羽 約500g</small></td></tr>
+<tr id="d6-2"><td class="d">6/2</td><td><span class="e" aria-hidden="true">🥭</span>宮崎マンゴー<small>マンゴー・1個 400g</small></td><td><span class="e" aria-hidden="true">🦅</span>ハクトウワシ<small>ワシ・1羽 約5kg</small></td></tr>
+<tr id="d6-3"><td class="d">6/3</td><td><span class="e" aria-hidden="true">🍑</span>小梅<small>うめ・1個 5g</small></td><td><span class="e" aria-hidden="true">🐟</span>メダカ<small>1匹 約0.3g</small></td></tr>
+<tr id="d6-4"><td class="d">6/4</td><td><span class="e" aria-hidden="true">🍈</span>タカミメロン<small>メロン・1玉 1.3kg</small></td><td><span class="e" aria-hidden="true">🐸</span>ウシガエル<small>カエル・1匹 約500g</small></td></tr>
+<tr id="d6-5"><td class="d">6/5</td><td><span class="e" aria-hidden="true">🍍</span>パイナップル<small>1個 1.5kg</small></td><td><span class="e" aria-hidden="true">🪱</span>ミミズ<small>1匹 約1g</small></td></tr>
+<tr id="d6-6"><td class="d">6/6</td><td><span class="e" aria-hidden="true">🥬</span>空心菜<small>1束 150g</small></td><td><span class="e" aria-hidden="true">🐦</span>ノドアカハチドリ<small>ハチドリ・1羽 約3g</small></td></tr>
+<tr id="d6-7"><td class="d">6/7</td><td><span class="e" aria-hidden="true">🫑</span>パプリカ<small>1個 150g</small></td><td><span class="e" aria-hidden="true">🐼</span>ジャイアントパンダ<small>パンダ・1頭 約100kg</small></td></tr>
+<tr id="d6-8"><td class="d">6/8</td><td><span class="e" aria-hidden="true">🍒</span>アメリカンチェリー<small>さくらんぼ・1粒 10g</small></td><td><span class="e" aria-hidden="true">🐃</span>ヌー<small>1頭 約200kg</small></td></tr>
+<tr id="d6-9"><td class="d">6/9</td><td><span class="e" aria-hidden="true">🌿</span>しそ<small>1枚 1g</small></td><td><span class="e" aria-hidden="true">🐚</span>ハマグリ<small>貝・1個 約30g</small></td></tr>
+<tr id="d6-10"><td class="d">6/10</td><td><span class="e" aria-hidden="true">🫑</span>ピーマン<small>1個 35g</small></td><td><span class="e" aria-hidden="true">🐟</span>ピラルク<small>1匹 約100kg</small></td></tr>
+<tr id="d6-11"><td class="d">6/11</td><td><span class="e" aria-hidden="true">🫐</span>ブルーベリー<small>1粒 2g</small></td><td><span class="e" aria-hidden="true">🐕</span>コーギー<small>イヌ・1匹 約12kg</small></td></tr>
+<tr id="d6-12"><td class="d">6/12</td><td><span class="e" aria-hidden="true">🫛</span>いんげん<small>1本 7g</small></td><td><span class="e" aria-hidden="true">🐎</span>道産子<small>ウマ・1頭 約350kg</small></td></tr>
+<tr id="d6-13"><td class="d">6/13</td><td><span class="e" aria-hidden="true">🍑</span>南高梅<small>うめ・1個 30g</small></td><td><span class="e" aria-hidden="true">🐟</span>カツオ<small>1尾 約4kg</small></td></tr>
+<tr id="d6-14"><td class="d">6/14</td><td><span class="e" aria-hidden="true">🍓</span>すずあかね<small>いちご・1粒 15g</small></td><td><span class="e" aria-hidden="true">🐦</span>カワセミ<small>1羽 約35g</small></td></tr>
+<tr id="d6-15"><td class="d">6/15</td><td><span class="e" aria-hidden="true">🫐</span>ハスカップ<small>1粒 1g</small></td><td><span class="e" aria-hidden="true">🐖</span>ツチブタ<small>1頭 約60kg</small></td></tr>
+<tr id="d6-16"><td class="d">6/16</td><td><span class="e" aria-hidden="true">🍆</span>なす<small>1本 80g</small></td><td><span class="e" aria-hidden="true">🦜</span>キバタン<small>オウム・1羽 約900g</small></td></tr>
+<tr id="d6-17"><td class="d">6/17</td><td><span class="e" aria-hidden="true">🍑</span>大石早生<small>すもも・1個 50g</small></td><td><span class="e" aria-hidden="true">🐢</span>アカミミガメ<small>カメ・1匹 約1kg</small></td></tr>
+<tr id="d6-18"><td class="d">6/18</td><td><span class="e" aria-hidden="true">🌶️</span>ししとう<small>1本 5g</small></td><td><span class="e" aria-hidden="true">🦦</span>コツメカワウソ<small>カワウソ・1匹 約4kg</small></td></tr>
+<tr id="d6-19"><td class="d">6/19</td><td><span class="e" aria-hidden="true">🥬</span>つるむらさき<small>1束 150g</small></td><td><span class="e" aria-hidden="true">🦭</span>ジュゴン<small>1頭 約400kg</small></td></tr>
+<tr id="d6-20"><td class="d">6/20</td><td><span class="e" aria-hidden="true">🍅</span>シシリアンルージュ<small>トマト・1個 30g</small></td><td><span class="e" aria-hidden="true">🐸</span>ゴライアスガエル<small>カエル・1匹 約3kg</small></td></tr>
+<tr id="d6-21"><td class="d">6/21</td><td><span class="e" aria-hidden="true">🍉</span>小玉スイカ<small>スイカ・1玉 2kg</small></td><td><span class="e" aria-hidden="true">🐋</span>ホッキョククジラ<small>クジラ・1頭 約80㌧</small></td></tr>
+<tr id="d6-22"><td class="d">6/22</td><td><span class="e" aria-hidden="true">🥬</span>モロヘイヤ<small>1束 100g</small></td><td><span class="e" aria-hidden="true">🐾</span>ハクビシン<small>1匹 約3kg</small></td></tr>
+<tr id="d6-23"><td class="d">6/23</td><td><span class="e" aria-hidden="true">🍒</span>佐藤錦<small>さくらんぼ・1粒 8g</small></td><td><span class="e" aria-hidden="true">🦔</span>ハリネズミ<small>1匹 約500g</small></td></tr>
+<tr id="d6-24"><td class="d">6/24</td><td><span class="e" aria-hidden="true">🥒</span>ゴーヤ<small>1本 250g</small></td><td><span class="e" aria-hidden="true">🐒</span>チンパンジー<small>1頭 約50kg</small></td></tr>
+<tr id="d6-25"><td class="d">6/25</td><td><span class="e" aria-hidden="true">🍒</span>紅秀峰<small>さくらんぼ・1粒 10g</small></td><td><span class="e" aria-hidden="true">🐂</span>ジャコウウシ<small>ウシ・1頭 約300kg</small></td></tr>
+<tr id="d6-26"><td class="d">6/26</td><td><span class="e" aria-hidden="true">🍆</span>水なす<small>なす・1本 200g</small></td><td><span class="e" aria-hidden="true">🦊</span>ホンドギツネ<small>キツネ・1匹 約5kg</small></td></tr>
+<tr id="d6-27"><td class="d">6/27</td><td><span class="e" aria-hidden="true">🥔</span>キタアカリ<small>じゃがいも・1個 100g</small></td><td><span class="e" aria-hidden="true">🐕</span>シベリアンハスキー<small>イヌ・1匹 約23kg</small></td></tr>
+<tr id="d6-28"><td class="d">6/28</td><td><span class="e" aria-hidden="true">🍑</span>あんず<small>1個 40g</small></td><td><span class="e" aria-hidden="true">🐳</span>シャチ<small>1頭 約5㌧</small></td></tr>
+<tr id="d6-29"><td class="d">6/29</td><td><span class="e" aria-hidden="true">🍈</span>パパイヤ<small>1個 500g</small></td><td><span class="e" aria-hidden="true">🐟</span>チョウザメ<small>1匹 約100kg</small></td></tr>
+<tr id="d6-30"><td class="d">6/30</td><td><span class="e" aria-hidden="true">🥔</span>メークイン<small>じゃがいも・1個 150g</small></td><td><span class="e" aria-hidden="true">🐿️</span>ムササビ<small>リス・1匹 約1kg</small></td></tr>
+</tbody></table></section>
+<section id="m7"><h2>7月</h2><table><thead><tr><th>日</th><th>きょうの旬</th><th>きょうの動物</th></tr></thead><tbody>
+<tr id="d7-1"><td class="d">7/1</td><td><span class="e" aria-hidden="true">🍅</span>サンマルツァーノ<small>トマト・1個 80g</small></td><td><span class="e" aria-hidden="true">🦉</span>ワシミミズク<small>フクロウ・1羽 約3kg</small></td></tr>
+<tr id="d7-2"><td class="d">7/2</td><td><span class="e" aria-hidden="true">🌱</span>みょうが<small>1個 15g</small></td><td><span class="e" aria-hidden="true">🐻</span>ツキノワグマ<small>クマ・1頭 約80kg</small></td></tr>
+<tr id="d7-3"><td class="d">7/3</td><td><span class="e" aria-hidden="true">🍑</span>ソルダム<small>すもも・1個 100g</small></td><td><span class="e" aria-hidden="true">🪲</span>カブトムシ<small>1匹 約8g</small></td></tr>
+<tr id="d7-4"><td class="d">7/4</td><td><span class="e" aria-hidden="true">🌱</span>オクラ<small>1本 10g</small></td><td><span class="e" aria-hidden="true">🦭</span>キタオットセイ<small>オットセイ・1頭 約100kg</small></td></tr>
+<tr id="d7-5"><td class="d">7/5</td><td><span class="e" aria-hidden="true">🍉</span>でんすけすいか<small>スイカ・1玉 7kg</small></td><td><span class="e" aria-hidden="true">🐦</span>アカゲラ<small>キツツキ・1羽 約80g</small></td></tr>
+<tr id="d7-6"><td class="d">7/6</td><td><span class="e" aria-hidden="true">🍑</span>日川白鳳<small>もも・1個 250g</small></td><td><span class="e" aria-hidden="true">🐊</span>イリエワニ<small>ワニ・1頭 約500kg</small></td></tr>
+<tr id="d7-7"><td class="d">7/7</td><td><span class="e" aria-hidden="true">🌵</span>ドラゴンフルーツ<small>1個 400g</small></td><td><span class="e" aria-hidden="true">🦎</span>エボシカメレオン<small>カメレオン・1匹 約150g</small></td></tr>
+<tr id="d7-8"><td class="d">7/8</td><td><span class="e" aria-hidden="true">🫐</span>ラズベリー<small>1粒 4g</small></td><td><span class="e" aria-hidden="true">🐻</span>アメリカクロクマ<small>クマ・1頭 約120kg</small></td></tr>
+<tr id="d7-9"><td class="d">7/9</td><td><span class="e" aria-hidden="true">🥭</span>ペリカンマンゴー<small>マンゴー・1個 300g</small></td><td><span class="e" aria-hidden="true">🦅</span>ハヤブサ<small>1羽 約800g</small></td></tr>
+<tr id="d7-10"><td class="d">7/10</td><td><span class="e" aria-hidden="true">🍈</span>ルピアレッド<small>メロン・1玉 1.5kg</small></td><td><span class="e" aria-hidden="true">🐦</span>ルリビタキ<small>1羽 約15g</small></td></tr>
+<tr id="d7-11"><td class="d">7/11</td><td><span class="e" aria-hidden="true">🫑</span>ジャンボピーマン<small>ピーマン・1個 100g</small></td><td><span class="e" aria-hidden="true">🐂</span>ガウル<small>ウシ・1頭 約1㌧</small></td></tr>
+<tr id="d7-12"><td class="d">7/12</td><td><span class="e" aria-hidden="true">🍑</span>パッションフルーツ<small>1個 80g</small></td><td><span class="e" aria-hidden="true">🐦</span>オオルリ<small>1羽 約20g</small></td></tr>
+<tr id="d7-13"><td class="d">7/13</td><td><span class="e" aria-hidden="true">🍆</span>長なす<small>なす・1本 150g</small></td><td><span class="e" aria-hidden="true">🐨</span>ウォンバット<small>1匹 約30kg</small></td></tr>
+<tr id="d7-14"><td class="d">7/14</td><td><span class="e" aria-hidden="true">🍈</span>とうがん<small>1個 3kg</small></td><td><span class="e" aria-hidden="true">🐇</span>ホーランドロップ<small>ウサギ・1匹 約1.8kg</small></td></tr>
+<tr id="d7-15"><td class="d">7/15</td><td><span class="e" aria-hidden="true">🍇</span>デラウェア<small>ぶどう・1房 120g</small></td><td><span class="e" aria-hidden="true">🦘</span>アカカンガルー<small>カンガルー・1頭 約60kg</small></td></tr>
+<tr id="d7-16"><td class="d">7/16</td><td><span class="e" aria-hidden="true">🍑</span>川中島白桃<small>もも・1個 350g</small></td><td><span class="e" aria-hidden="true">🦌</span>トムソンガゼル<small>ガゼル・1頭 約25kg</small></td></tr>
+<tr id="d7-17"><td class="d">7/17</td><td><span class="e" aria-hidden="true">🥔</span>男爵いも<small>じゃがいも・1個 100g</small></td><td><span class="e" aria-hidden="true">🐟</span>キハダ<small>マグロ・1尾 約50kg</small></td></tr>
+<tr id="d7-18"><td class="d">7/18</td><td><span class="e" aria-hidden="true">🍋</span>シークヮーサー<small>1個 20g</small></td><td><span class="e" aria-hidden="true">🦈</span>ホホジロザメ<small>サメ・1匹 約1㌧</small></td></tr>
+<tr id="d7-19"><td class="d">7/19</td><td><span class="e" aria-hidden="true">🫛</span>ささげ<small>1本 10g</small></td><td><span class="e" aria-hidden="true">🐡</span>ハリセンボン<small>フグ・1匹 約500g</small></td></tr>
+<tr id="d7-20"><td class="d">7/20</td><td><span class="e" aria-hidden="true">🌶️</span>万願寺とうがらし<small>とうがらし・1本 30g</small></td><td><span class="e" aria-hidden="true">🦎</span>ニホンヤモリ<small>ヤモリ・1匹 約4g</small></td></tr>
+<tr id="d7-21"><td class="d">7/21</td><td><span class="e" aria-hidden="true">🥒</span>加賀太きゅうり<small>きゅうり・1本 600g</small></td><td><span class="e" aria-hidden="true">🐍</span>アナコンダ<small>ヘビ・1匹 約70kg</small></td></tr>
+<tr id="d7-22"><td class="d">7/22</td><td><span class="e" aria-hidden="true">🌿</span>バジル<small>1枚 1g</small></td><td><span class="e" aria-hidden="true">🐟</span>マダイ<small>タイ・1尾 約2kg</small></td></tr>
+<tr id="d7-23"><td class="d">7/23</td><td><span class="e" aria-hidden="true">🍑</span>白鳳<small>もも・1個 250g</small></td><td><span class="e" aria-hidden="true">🐞</span>ナナホシテントウ<small>テントウムシ・1匹 約0.04g</small></td></tr>
+<tr id="d7-24"><td class="d">7/24</td><td><span class="e" aria-hidden="true">🌽</span>ピュアホワイト<small>とうもろこし・1本 350g</small></td><td><span class="e" aria-hidden="true">🦑</span>ダイオウイカ<small>イカ・1杯 約200kg</small></td></tr>
+<tr id="d7-25"><td class="d">7/25</td><td><span class="e" aria-hidden="true">🍉</span>大玉スイカ<small>スイカ・1玉 6kg</small></td><td><span class="e" aria-hidden="true">🐟</span>ニホンウナギ<small>ウナギ・1尾 約200g</small></td></tr>
+<tr id="d7-26"><td class="d">7/26</td><td><span class="e" aria-hidden="true">🍅</span>アイコ<small>トマト・1粒 20g</small></td><td><span class="e" aria-hidden="true">🐛</span>ダンゴムシ<small>1匹 約0.5g</small></td></tr>
+<tr id="d7-27"><td class="d">7/27</td><td><span class="e" aria-hidden="true">🍆</span>米なす<small>なす・1個 300g</small></td><td><span class="e" aria-hidden="true">🦏</span>インドサイ<small>サイ・1頭 約2㌧</small></td></tr>
+<tr id="d7-28"><td class="d">7/28</td><td><span class="e" aria-hidden="true">🌽</span>味来<small>とうもろこし・1本 350g</small></td><td><span class="e" aria-hidden="true">🐐</span>ザーネン<small>ヤギ・1頭 約60kg</small></td></tr>
+<tr id="d7-29"><td class="d">7/29</td><td><span class="e" aria-hidden="true">🌱</span>おかひじき<small>1束 100g</small></td><td><span class="e" aria-hidden="true">🐒</span>マンドリル<small>サル・1匹 約25kg</small></td></tr>
+<tr id="d7-30"><td class="d">7/30</td><td><span class="e" aria-hidden="true">🫛</span>枝豆<small>1さや 3g</small></td><td><span class="e" aria-hidden="true">🐦</span>エミュー<small>1羽 約40kg</small></td></tr>
+<tr id="d7-31"><td class="d">7/31</td><td><span class="e" aria-hidden="true">🍑</span>あかつき<small>もも・1個 300g</small></td><td><span class="e" aria-hidden="true">🐓</span>烏骨鶏<small>ニワトリ・1羽 約1.5kg</small></td></tr>
+</tbody></table></section>
+<section id="m8"><h2>8月</h2><table><thead><tr><th>日</th><th>きょうの旬</th><th>きょうの動物</th></tr></thead><tbody>
+<tr id="d8-1"><td class="d">8/1</td><td><span class="e" aria-hidden="true">🎃</span>えびすかぼちゃ<small>かぼちゃ・1個 1.5kg</small></td><td><span class="e" aria-hidden="true">🐒</span>スローロリス<small>サル・1匹 約1kg</small></td></tr>
+<tr id="d8-2"><td class="d">8/2</td><td><span class="e" aria-hidden="true">🫚</span>しょうが<small>1かけ 100g</small></td><td><span class="e" aria-hidden="true">🦛</span>カバ<small>1頭 約1.5㌧</small></td></tr>
+<tr id="d8-3"><td class="d">8/3</td><td><span class="e" aria-hidden="true">🍈</span>クラウンメロン<small>メロン・1玉 1.3kg</small></td><td><span class="e" aria-hidden="true">🐋</span>ナガスクジラ<small>クジラ・1頭 約50㌧</small></td></tr>
+<tr id="d8-4"><td class="d">8/4</td><td><span class="e" aria-hidden="true">🍇</span>ピオーネ<small>ぶどう・1房 400g</small></td><td><span class="e" aria-hidden="true">🐚</span>アサリ<small>貝・1個 約8g</small></td></tr>
+<tr id="d8-5"><td class="d">8/5</td><td><span class="e" aria-hidden="true">🥔</span>インカのめざめ<small>じゃがいも・1個 80g</small></td><td><span class="e" aria-hidden="true">🦑</span>アオリイカ<small>イカ・1杯 約1.5kg</small></td></tr>
+<tr id="d8-6"><td class="d">8/6</td><td><span class="e" aria-hidden="true">🍑</span>ネクタリン<small>1個 150g</small></td><td><span class="e" aria-hidden="true">🐌</span>カタツムリ<small>1匹 約10g</small></td></tr>
+<tr id="d8-7"><td class="d">8/7</td><td><span class="e" aria-hidden="true">🍇</span>藤稔<small>ぶどう・1房 500g</small></td><td><span class="e" aria-hidden="true">🐦</span>オニオオハシ<small>オオハシ・1羽 約600g</small></td></tr>
+<tr id="d8-8"><td class="d">8/8</td><td><span class="e" aria-hidden="true">🍆</span>賀茂なす<small>なす・1個 300g</small></td><td><span class="e" aria-hidden="true">🦪</span>マガキ<small>貝・1個 約100g</small></td></tr>
+<tr id="d8-9"><td class="d">8/9</td><td><span class="e" aria-hidden="true">🍇</span>巨峰<small>ぶどう・1房 400g</small></td><td><span class="e" aria-hidden="true">🐹</span>ジャンガリアンハムスター<small>ハムスター・1匹 約40g</small></td></tr>
+<tr id="d8-10"><td class="d">8/10</td><td><span class="e" aria-hidden="true">🍑</span>桝井ドーフィン<small>いちじく・1個 80g</small></td><td><span class="e" aria-hidden="true">🦭</span>トド<small>アシカ・1頭 約600kg</small></td></tr>
+<tr id="d8-11"><td class="d">8/11</td><td><span class="e" aria-hidden="true">🍎</span>さんさ<small>りんご・1個 250g</small></td><td><span class="e" aria-hidden="true">🦌</span>ニホンジカ<small>シカ・1頭 約60kg</small></td></tr>
+<tr id="d8-12"><td class="d">8/12</td><td><span class="e" aria-hidden="true">🍑</span>黄金桃<small>もも・1個 300g</small></td><td><span class="e" aria-hidden="true">🐾</span>ホンドテン<small>テン・1匹 約1.2kg</small></td></tr>
+<tr id="d8-13"><td class="d">8/13</td><td><span class="e" aria-hidden="true">🍈</span>まくわうり<small>1個 400g</small></td><td><span class="e" aria-hidden="true">🐘</span>アジアゾウ<small>ゾウ・1頭 約4㌧</small></td></tr>
+<tr id="d8-14"><td class="d">8/14</td><td><span class="e" aria-hidden="true">🫛</span>だだちゃ豆<small>枝豆・1さや 3g</small></td><td><span class="e" aria-hidden="true">🐇</span>ニホンノウサギ<small>ウサギ・1匹 約2.5kg</small></td></tr>
+<tr id="d8-15"><td class="d">8/15</td><td><span class="e" aria-hidden="true">🍑</span>プルーン<small>1個 40g</small></td><td><span class="e" aria-hidden="true">🐘</span>アフリカゾウ<small>ゾウ・1頭 約6㌧</small></td></tr>
+<tr id="d8-16"><td class="d">8/16</td><td><span class="e" aria-hidden="true">🍇</span>ナイアガラ<small>ぶどう・1房 300g</small></td><td><span class="e" aria-hidden="true">🐆</span>チーター<small>1頭 約50kg</small></td></tr>
+<tr id="d8-17"><td class="d">8/17</td><td><span class="e" aria-hidden="true">🫐</span>ブラックベリー<small>1粒 5g</small></td><td><span class="e" aria-hidden="true">🐿️</span>ニホンリス<small>リス・1匹 約300g</small></td></tr>
+<tr id="d8-18"><td class="d">8/18</td><td><span class="e" aria-hidden="true">🍋</span>青ゆず<small>ゆず・1個 100g</small></td><td><span class="e" aria-hidden="true">🐻</span>ナマケグマ<small>クマ・1頭 約100kg</small></td></tr>
+<tr id="d8-19"><td class="d">8/19</td><td><span class="e" aria-hidden="true">🌶️</span>鷹の爪<small>とうがらし・1本 1g</small></td><td><span class="e" aria-hidden="true">🦫</span>ビーバー<small>1匹 約20kg</small></td></tr>
+<tr id="d8-20"><td class="d">8/20</td><td><span class="e" aria-hidden="true">🍐</span>豊水<small>なし・1個 350g</small></td><td><span class="e" aria-hidden="true">🦅</span>オオタカ<small>タカ・1羽 約1kg</small></td></tr>
+<tr id="d8-21"><td class="d">8/21</td><td><span class="e" aria-hidden="true">🥜</span>郷の香<small>落花生・1さや 3g</small></td><td><span class="e" aria-hidden="true">🦭</span>カリフォルニアアシカ<small>アシカ・1頭 約200kg</small></td></tr>
+<tr id="d8-22"><td class="d">8/22</td><td><span class="e" aria-hidden="true">🌶️</span>ハバネロ<small>とうがらし・1個 10g</small></td><td><span class="e" aria-hidden="true">🦫</span>カピバラ<small>1頭 約50kg</small></td></tr>
+<tr id="d8-23"><td class="d">8/23</td><td><span class="e" aria-hidden="true">🍇</span>シャインマスカット<small>ぶどう・1房 600g</small></td><td><span class="e" aria-hidden="true">🐕</span>チワワ<small>イヌ・1匹 約2kg</small></td></tr>
+<tr id="d8-24"><td class="d">8/24</td><td><span class="e" aria-hidden="true">🍋</span>すだち<small>1個 30g</small></td><td><span class="e" aria-hidden="true">🐄</span>ホルスタイン<small>ウシ・1頭 約650kg</small></td></tr>
+<tr id="d8-25"><td class="d">8/25</td><td><span class="e" aria-hidden="true">🍌</span>島バナナ<small>バナナ・1本 70g</small></td><td><span class="e" aria-hidden="true">🦓</span>シマウマ<small>1頭 約300kg</small></td></tr>
+<tr id="d8-26"><td class="d">8/26</td><td><span class="e" aria-hidden="true">🍐</span>幸水<small>なし・1個 350g</small></td><td><span class="e" aria-hidden="true">🦍</span>ゴリラ<small>1頭 約160kg</small></td></tr>
+<tr id="d8-27"><td class="d">8/27</td><td><span class="e" aria-hidden="true">🍎</span>つがる<small>りんご・1個 300g</small></td><td><span class="e" aria-hidden="true">🐦</span>ダチョウ<small>1羽 約120kg</small></td></tr>
+<tr id="d8-28"><td class="d">8/28</td><td><span class="e" aria-hidden="true">🥭</span>キーツマンゴー<small>マンゴー・1個 1kg</small></td><td><span class="e" aria-hidden="true">🐟</span>カンパチ<small>1尾 約5kg</small></td></tr>
+<tr id="d8-29"><td class="d">8/29</td><td><span class="e" aria-hidden="true">🥒</span>白うり<small>1本 500g</small></td><td><span class="e" aria-hidden="true">🐬</span>シロイルカ<small>イルカ・1頭 約1㌧</small></td></tr>
+<tr id="d8-30"><td class="d">8/30</td><td><span class="e" aria-hidden="true">🍐</span>二十世紀<small>なし・1個 300g</small></td><td><span class="e" aria-hidden="true">🐧</span>キングペンギン<small>ペンギン・1羽 約13kg</small></td></tr>
+<tr id="d8-31"><td class="d">8/31</td><td><span class="e" aria-hidden="true">🍑</span>清水白桃<small>もも・1個 300g</small></td><td><span class="e" aria-hidden="true">🐺</span>ハイイロオオカミ<small>オオカミ・1頭 約40kg</small></td></tr>
+</tbody></table></section>
+<section id="m9"><h2>9月</h2><table><thead><tr><th>日</th><th>きょうの旬</th><th>きょうの動物</th></tr></thead><tbody>
+<tr id="d9-1"><td class="d">9/1</td><td><span class="e" aria-hidden="true">🍆</span>秋なす<small>なす・1本 100g</small></td><td><span class="e" aria-hidden="true">🐀</span>ドブネズミ<small>ネズミ・1匹 約300g</small></td></tr>
+<tr id="d9-2"><td class="d">9/2</td><td><span class="e" aria-hidden="true">🥔</span>石川早生<small>さといも・1個 30g</small></td><td><span class="e" aria-hidden="true">🐕</span>ボーダーコリー<small>イヌ・1匹 約18kg</small></td></tr>
+<tr id="d9-3"><td class="d">9/3</td><td><span class="e" aria-hidden="true">🍄</span>まいたけ<small>きのこ・1株 100g</small></td><td><span class="e" aria-hidden="true">🦭</span>ゼニガタアザラシ<small>アザラシ・1頭 約100kg</small></td></tr>
+<tr id="d9-4"><td class="d">9/4</td><td><span class="e" aria-hidden="true">🍐</span>南水<small>なし・1個 400g</small></td><td><span class="e" aria-hidden="true">🐟</span>サンマ<small>1尾 約150g</small></td></tr>
+<tr id="d9-5"><td class="d">9/5</td><td><span class="e" aria-hidden="true">🥒</span>ハヤトウリ<small>1個 300g</small></td><td><span class="e" aria-hidden="true">🦁</span>ライオン<small>1頭 約190kg</small></td></tr>
+<tr id="d9-6"><td class="d">9/6</td><td><span class="e" aria-hidden="true">🥔</span>むかご<small>やまいも・1粒 2g</small></td><td><span class="e" aria-hidden="true">🦜</span>オカメインコ<small>インコ・1羽 約90g</small></td></tr>
+<tr id="d9-7"><td class="d">9/7</td><td><span class="e" aria-hidden="true">🌰</span>丹波栗<small>くり・1粒 30g</small></td><td><span class="e" aria-hidden="true">🦒</span>キリン<small>1頭 約1㌧</small></td></tr>
+<tr id="d9-8"><td class="d">9/8</td><td><span class="e" aria-hidden="true">🎃</span>坊ちゃんかぼちゃ<small>かぼちゃ・1個 400g</small></td><td><span class="e" aria-hidden="true">🐬</span>スナメリ<small>イルカ・1頭 約50kg</small></td></tr>
+<tr id="d9-9"><td class="d">9/9</td><td><span class="e" aria-hidden="true">🍎</span>早生ふじ<small>りんご・1個 300g</small></td><td><span class="e" aria-hidden="true">🐿️</span>プレーリードッグ<small>リス・1匹 約1kg</small></td></tr>
+<tr id="d9-10"><td class="d">9/10</td><td><span class="e" aria-hidden="true">🍄</span>しめじ<small>きのこ・1株 100g</small></td><td><span class="e" aria-hidden="true">🦥</span>ナマケモノ<small>1匹 約4kg</small></td></tr>
+<tr id="d9-11"><td class="d">9/11</td><td><span class="e" aria-hidden="true">🍠</span>鳴門金時<small>さつまいも・1本 250g</small></td><td><span class="e" aria-hidden="true">🐟</span>マアジ<small>アジ・1尾 約200g</small></td></tr>
+<tr id="d9-12"><td class="d">9/12</td><td><span class="e" aria-hidden="true">🍄</span>エリンギ<small>きのこ・1本 40g</small></td><td><span class="e" aria-hidden="true">🐪</span>ヒトコブラクダ<small>ラクダ・1頭 約500kg</small></td></tr>
+<tr id="d9-13"><td class="d">9/13</td><td><span class="e" aria-hidden="true">🍐</span>あきづき<small>なし・1個 450g</small></td><td><span class="e" aria-hidden="true">🐚</span>ホタテ<small>貝・1枚 約200g</small></td></tr>
+<tr id="d9-14"><td class="d">9/14</td><td><span class="e" aria-hidden="true">🍠</span>紅あずま<small>さつまいも・1本 250g</small></td><td><span class="e" aria-hidden="true">🐳</span>マッコウクジラ<small>クジラ・1頭 約40㌧</small></td></tr>
+<tr id="d9-15"><td class="d">9/15</td><td><span class="e" aria-hidden="true">🍇</span>ゴルビー<small>ぶどう・1房 600g</small></td><td><span class="e" aria-hidden="true">🐙</span>メンダコ<small>タコ・1杯 約300g</small></td></tr>
+<tr id="d9-16"><td class="d">9/16</td><td><span class="e" aria-hidden="true">🍎</span>シナノスイート<small>りんご・1個 350g</small></td><td><span class="e" aria-hidden="true">🐈</span>イリオモテヤマネコ<small>ヤマネコ・1匹 約4kg</small></td></tr>
+<tr id="d9-17"><td class="d">9/17</td><td><span class="e" aria-hidden="true">🍠</span>シルクスイート<small>さつまいも・1本 250g</small></td><td><span class="e" aria-hidden="true">🐃</span>ヤク<small>ウシ・1頭 約500kg</small></td></tr>
+<tr id="d9-18"><td class="d">9/18</td><td><span class="e" aria-hidden="true">🍐</span>かおり<small>なし・1個 800g</small></td><td><span class="e" aria-hidden="true">🐧</span>コガタペンギン<small>ペンギン・1羽 約1kg</small></td></tr>
+<tr id="d9-19"><td class="d">9/19</td><td><span class="e" aria-hidden="true">🍆</span>あけび<small>1個 100g</small></td><td><span class="e" aria-hidden="true">🦆</span>カルガモ<small>カモ・1羽 約1kg</small></td></tr>
+<tr id="d9-20"><td class="d">9/20</td><td><span class="e" aria-hidden="true">🍎</span>秋映<small>りんご・1個 300g</small></td><td><span class="e" aria-hidden="true">🦏</span>シロサイ<small>サイ・1頭 約2.3㌧</small></td></tr>
+<tr id="d9-21"><td class="d">9/21</td><td><span class="e" aria-hidden="true">🍑</span>蓬莱柿<small>いちじく・1個 70g</small></td><td><span class="e" aria-hidden="true">🐭</span>ヤマネ<small>1匹 約20g</small></td></tr>
+<tr id="d9-22"><td class="d">9/22</td><td><span class="e" aria-hidden="true">🍇</span>ロザリオビアンコ<small>ぶどう・1房 500g</small></td><td><span class="e" aria-hidden="true">🐊</span>ナイルワニ<small>ワニ・1頭 約400kg</small></td></tr>
+<tr id="d9-23"><td class="d">9/23</td><td><span class="e" aria-hidden="true">🍋</span>カボス<small>1個 120g</small></td><td><span class="e" aria-hidden="true">🦝</span>アライグマ<small>1匹 約7kg</small></td></tr>
+<tr id="d9-24"><td class="d">9/24</td><td><span class="e" aria-hidden="true">🥜</span>おおまさり<small>落花生・1さや 5g</small></td><td><span class="e" aria-hidden="true">🐗</span>イノシシ<small>1頭 約80kg</small></td></tr>
+<tr id="d9-25"><td class="d">9/25</td><td><span class="e" aria-hidden="true">🍇</span>クイーンニーナ<small>ぶどう・1房 500g</small></td><td><span class="e" aria-hidden="true">🐦</span>ハシビロコウ<small>1羽 約6kg</small></td></tr>
+<tr id="d9-26"><td class="d">9/26</td><td><span class="e" aria-hidden="true">🌰</span>ぽろたん<small>くり・1粒 30g</small></td><td><span class="e" aria-hidden="true">🦊</span>ホッキョクギツネ<small>キツネ・1匹 約4kg</small></td></tr>
+<tr id="d9-27"><td class="d">9/27</td><td><span class="e" aria-hidden="true">🍄</span>松茸<small>きのこ・1本 60g</small></td><td><span class="e" aria-hidden="true">🐢</span>アカウミガメ<small>カメ・1匹 約100kg</small></td></tr>
+<tr id="d9-28"><td class="d">9/28</td><td><span class="e" aria-hidden="true">🌰</span>銀寄<small>くり・1粒 25g</small></td><td><span class="e" aria-hidden="true">🦞</span>イセエビ<small>エビ・1尾 約400g</small></td></tr>
+<tr id="d9-29"><td class="d">9/29</td><td><span class="e" aria-hidden="true">🍄</span>ひらたけ<small>きのこ・1株 100g</small></td><td><span class="e" aria-hidden="true">🦗</span>スズムシ<small>1匹 約0.5g</small></td></tr>
+<tr id="d9-30"><td class="d">9/30</td><td><span class="e" aria-hidden="true">🍇</span>オーロラブラック<small>ぶどう・1房 500g</small></td><td><span class="e" aria-hidden="true">🐒</span>ニホンザル<small>サル・1匹 約10kg</small></td></tr>
+</tbody></table></section>
+<section id="m10"><h2>10月</h2><table><thead><tr><th>日</th><th>きょうの旬</th><th>きょうの動物</th></tr></thead><tbody>
+<tr id="d10-1"><td class="d">10/1</td><td><span class="e" aria-hidden="true">🌰</span>利平栗<small>くり・1粒 30g</small></td><td><span class="e" aria-hidden="true">🦇</span>オオコウモリ<small>コウモリ・1匹 約500g</small></td></tr>
+<tr id="d10-2"><td class="d">10/2</td><td><span class="e" aria-hidden="true">🍎</span>シナノゴールド<small>りんご・1個 300g</small></td><td><span class="e" aria-hidden="true">🐍</span>アミメニシキヘビ<small>ヘビ・1匹 約75kg</small></td></tr>
+<tr id="d10-3"><td class="d">10/3</td><td><span class="e" aria-hidden="true">🍄</span>なめこ<small>きのこ・1袋 100g</small></td><td><span class="e" aria-hidden="true">🐟</span>マイワシ<small>イワシ・1尾 約100g</small></td></tr>
+<tr id="d10-4"><td class="d">10/4</td><td><span class="e" aria-hidden="true">🍠</span>ヤーコン<small>1本 300g</small></td><td><span class="e" aria-hidden="true">🐙</span>ミズダコ<small>タコ・1杯 約15kg</small></td></tr>
+<tr id="d10-5"><td class="d">10/5</td><td><span class="e" aria-hidden="true">🍎</span>ジョナゴールド<small>りんご・1個 300g</small></td><td><span class="e" aria-hidden="true">🐕</span>パグ<small>イヌ・1匹 約7kg</small></td></tr>
+<tr id="d10-6"><td class="d">10/6</td><td><span class="e" aria-hidden="true">🥜</span>千葉半立<small>落花生・1さや 2g</small></td><td><span class="e" aria-hidden="true">🦉</span>コノハズク<small>フクロウ・1羽 約80g</small></td></tr>
+<tr id="d10-7"><td class="d">10/7</td><td><span class="e" aria-hidden="true">🍐</span>ラ・フランス<small>洋なし・1個 250g</small></td><td><span class="e" aria-hidden="true">🐋</span>ザトウクジラ<small>クジラ・1頭 約30㌧</small></td></tr>
+<tr id="d10-8"><td class="d">10/8</td><td><span class="e" aria-hidden="true">🍇</span>甲州<small>ぶどう・1房 400g</small></td><td><span class="e" aria-hidden="true">🐟</span>アユ<small>1尾 約100g</small></td></tr>
+<tr id="d10-9"><td class="d">10/9</td><td><span class="e" aria-hidden="true">🥔</span>海老芋<small>さといも・1個 200g</small></td><td><span class="e" aria-hidden="true">🦔</span>アルマジロ<small>1匹 約5kg</small></td></tr>
+<tr id="d10-10"><td class="d">10/10</td><td><span class="e" aria-hidden="true">🍐</span>新高<small>なし・1個 800g</small></td><td><span class="e" aria-hidden="true">🐍</span>アオダイショウ<small>ヘビ・1匹 約600g</small></td></tr>
+<tr id="d10-11"><td class="d">10/11</td><td><span class="e" aria-hidden="true">🍄</span>きくらげ<small>きのこ・1枚 5g</small></td><td><span class="e" aria-hidden="true">🐦</span>シマエナガ<small>エナガ・1羽 約8g</small></td></tr>
+<tr id="d10-12"><td class="d">10/12</td><td><span class="e" aria-hidden="true">🍊</span>平核無柿<small>かき・1個 200g</small></td><td><span class="e" aria-hidden="true">🦭</span>セイウチ<small>1頭 約1.2㌧</small></td></tr>
+<tr id="d10-13"><td class="d">10/13</td><td><span class="e" aria-hidden="true">🍠</span>紅はるか<small>さつまいも・1本 250g</small></td><td><span class="e" aria-hidden="true">🐟</span>マサバ<small>サバ・1尾 約600g</small></td></tr>
+<tr id="d10-14"><td class="d">10/14</td><td><span class="e" aria-hidden="true">🍎</span>陽光<small>りんご・1個 350g</small></td><td><span class="e" aria-hidden="true">🕊️</span>カワラバト<small>ハト・1羽 約350g</small></td></tr>
+<tr id="d10-15"><td class="d">10/15</td><td><span class="e" aria-hidden="true">🍊</span>富有柿<small>かき・1個 250g</small></td><td><span class="e" aria-hidden="true">🐦</span>ダイサギ<small>サギ・1羽 約1kg</small></td></tr>
+<tr id="d10-16"><td class="d">10/16</td><td><span class="e" aria-hidden="true">🍄</span>はなびらたけ<small>きのこ・1株 100g</small></td><td><span class="e" aria-hidden="true">🦇</span>キクガシラコウモリ<small>コウモリ・1匹 約25g</small></td></tr>
+<tr id="d10-17"><td class="d">10/17</td><td><span class="e" aria-hidden="true">🍎</span>世界一<small>りんご・1個 700g</small></td><td><span class="e" aria-hidden="true">🦦</span>ラッコ<small>1頭 約30kg</small></td></tr>
+<tr id="d10-18"><td class="d">10/18</td><td><span class="e" aria-hidden="true">🍐</span>かりん<small>1個 300g</small></td><td><span class="e" aria-hidden="true">🐭</span>チンチラ<small>1匹 約500g</small></td></tr>
+<tr id="d10-19"><td class="d">10/19</td><td><span class="e" aria-hidden="true">🍠</span>紫いも<small>さつまいも・1本 200g</small></td><td><span class="e" aria-hidden="true">🦢</span>コブハクチョウ<small>ハクチョウ・1羽 約11kg</small></td></tr>
+<tr id="d10-20"><td class="d">10/20</td><td><span class="e" aria-hidden="true">🌰</span>ぎんなん<small>1粒 3g</small></td><td><span class="e" aria-hidden="true">🐎</span>シェトランドポニー<small>ウマ・1頭 約150kg</small></td></tr>
+<tr id="d10-21"><td class="d">10/21</td><td><span class="e" aria-hidden="true">🍇</span>紫苑<small>ぶどう・1房 600g</small></td><td><span class="e" aria-hidden="true">🦅</span>プテラノドン<small>翼竜・1頭 約20kg</small></td></tr>
+<tr id="d10-22"><td class="d">10/22</td><td><span class="e" aria-hidden="true">🎃</span>バターナッツ<small>かぼちゃ・1個 1kg</small></td><td><span class="e" aria-hidden="true">🐦</span>コウノトリ<small>1羽 約5kg</small></td></tr>
+<tr id="d10-23"><td class="d">10/23</td><td><span class="e" aria-hidden="true">🥝</span>レインボーレッド<small>キウイ・1個 80g</small></td><td><span class="e" aria-hidden="true">🐅</span>アムールトラ<small>トラ・1頭 約250kg</small></td></tr>
+<tr id="d10-24"><td class="d">10/24</td><td><span class="e" aria-hidden="true">🍇</span>スチューベン<small>ぶどう・1房 400g</small></td><td><span class="e" aria-hidden="true">🦀</span>タラバガニ<small>カニ・1杯 約2kg</small></td></tr>
+<tr id="d10-25"><td class="d">10/25</td><td><span class="e" aria-hidden="true">🍊</span>太秋柿<small>かき・1個 400g</small></td><td><span class="e" aria-hidden="true">🪼</span>エチゼンクラゲ<small>クラゲ・1匹 約150kg</small></td></tr>
+<tr id="d10-26"><td class="d">10/26</td><td><span class="e" aria-hidden="true">🍄</span>えのき<small>きのこ・1袋 100g</small></td><td><span class="e" aria-hidden="true">🐦</span>スズメ<small>1羽 約24g</small></td></tr>
+<tr id="d10-27"><td class="d">10/27</td><td><span class="e" aria-hidden="true">🍐</span>ゼネラル・レクラーク<small>洋なし・1個 450g</small></td><td><span class="e" aria-hidden="true">🐑</span>サフォーク<small>ヒツジ・1頭 約100kg</small></td></tr>
+<tr id="d10-28"><td class="d">10/28</td><td><span class="e" aria-hidden="true">🥕</span>ビーツ<small>1個 200g</small></td><td><span class="e" aria-hidden="true">🐇</span>アマミノクロウサギ<small>ウサギ・1匹 約2.5kg</small></td></tr>
+<tr id="d10-29"><td class="d">10/29</td><td><span class="e" aria-hidden="true">🍊</span>早生みかん<small>みかん・1個 100g</small></td><td><span class="e" aria-hidden="true">🐦</span>トキ<small>1羽 約1.6kg</small></td></tr>
+<tr id="d10-30"><td class="d">10/30</td><td><span class="e" aria-hidden="true">🥔</span>やまといも<small>やまいも・1個 400g</small></td><td><span class="e" aria-hidden="true">🐠</span>キンギョ<small>1匹 約30g</small></td></tr>
+<tr id="d10-31"><td class="d">10/31</td><td><span class="e" aria-hidden="true">🍎</span>紅玉<small>りんご・1個 200g</small></td><td><span class="e" aria-hidden="true">🐨</span>コアラ<small>1匹 約9kg</small></td></tr>
+</tbody></table></section>
+<section id="m11"><h2>11月</h2><table><thead><tr><th>日</th><th>きょうの旬</th><th>きょうの動物</th></tr></thead><tbody>
+<tr id="d11-1"><td class="d">11/1</td><td><span class="e" aria-hidden="true">🥝</span>ゴールドキウイ<small>キウイ・1個 100g</small></td><td><span class="e" aria-hidden="true">🦈</span>シュモクザメ<small>サメ・1匹 約150kg</small></td></tr>
+<tr id="d11-2"><td class="d">11/2</td><td><span class="e" aria-hidden="true">🍐</span>晩三吉<small>なし・1個 800g</small></td><td><span class="e" aria-hidden="true">🐍</span>キングコブラ<small>ヘビ・1匹 約6kg</small></td></tr>
+<tr id="d11-3"><td class="d">11/3</td><td><span class="e" aria-hidden="true">🍊</span>次郎柿<small>かき・1個 250g</small></td><td><span class="e" aria-hidden="true">🦏</span>クロサイ<small>サイ・1頭 約1.1㌧</small></td></tr>
+<tr id="d11-4"><td class="d">11/4</td><td><span class="e" aria-hidden="true">🥬</span>プチヴェール<small>1個 10g</small></td><td><span class="e" aria-hidden="true">🐟</span>オニイトマキエイ<small>エイ・1匹 約1.5㌧</small></td></tr>
+<tr id="d11-5"><td class="d">11/5</td><td><span class="e" aria-hidden="true">🍊</span>津之輝<small>かんきつ・1個 200g</small></td><td><span class="e" aria-hidden="true">🐢</span>ケヅメリクガメ<small>カメ・1匹 約50kg</small></td></tr>
+<tr id="d11-6"><td class="d">11/6</td><td><span class="e" aria-hidden="true">🥬</span>高菜<small>1株 500g</small></td><td><span class="e" aria-hidden="true">🐋</span>ミンククジラ<small>クジラ・1頭 約7㌧</small></td></tr>
+<tr id="d11-7"><td class="d">11/7</td><td><span class="e" aria-hidden="true">🍎</span>ぐんま名月<small>りんご・1個 300g</small></td><td><span class="e" aria-hidden="true">🦋</span>アゲハ<small>チョウ・1匹 約0.5g</small></td></tr>
+<tr id="d11-8"><td class="d">11/8</td><td><span class="e" aria-hidden="true">🫒</span>オリーブ<small>1粒 4g</small></td><td><span class="e" aria-hidden="true">🦩</span>ベニイロフラミンゴ<small>フラミンゴ・1羽 約3kg</small></td></tr>
+<tr id="d11-9"><td class="d">11/9</td><td><span class="e" aria-hidden="true">🍊</span>はれひめ<small>かんきつ・1個 150g</small></td><td><span class="e" aria-hidden="true">🐦</span>ウミネコ<small>カモメ・1羽 約500g</small></td></tr>
+<tr id="d11-10"><td class="d">11/10</td><td><span class="e" aria-hidden="true">🥬</span>赤かぶ<small>かぶ・1個 100g</small></td><td><span class="e" aria-hidden="true">🐿️</span>エゾリス<small>リス・1匹 約400g</small></td></tr>
+<tr id="d11-11"><td class="d">11/11</td><td><span class="e" aria-hidden="true">🍊</span>紅まどんな<small>かんきつ・1個 250g</small></td><td><span class="e" aria-hidden="true">🐟</span>マナマズ<small>ナマズ・1匹 約2kg</small></td></tr>
+<tr id="d11-12"><td class="d">11/12</td><td><span class="e" aria-hidden="true">🥔</span>菊いも<small>1個 50g</small></td><td><span class="e" aria-hidden="true">🪲</span>アブラゼミ<small>セミ・1匹 約2g</small></td></tr>
+<tr id="d11-13"><td class="d">11/13</td><td><span class="e" aria-hidden="true">🌰</span>くるみ<small>1粒 10g</small></td><td><span class="e" aria-hidden="true">🐟</span>クロマグロ<small>マグロ・1尾 約250kg</small></td></tr>
+<tr id="d11-14"><td class="d">11/14</td><td><span class="e" aria-hidden="true">🍎</span>ふじ<small>りんご・1個 300g</small></td><td><span class="e" aria-hidden="true">🐷</span>ミニブタ<small>ブタ・1頭 約40kg</small></td></tr>
+<tr id="d11-15"><td class="d">11/15</td><td><span class="e" aria-hidden="true">🥔</span>アンデスレッド<small>じゃがいも・1個 150g</small></td><td><span class="e" aria-hidden="true">🐏</span>オオツノヒツジ<small>ヒツジ・1頭 約120kg</small></td></tr>
+<tr id="d11-16"><td class="d">11/16</td><td><span class="e" aria-hidden="true">🍐</span>マルゲリット・マリーラ<small>洋なし・1個 500g</small></td><td><span class="e" aria-hidden="true">🦅</span>オジロワシ<small>ワシ・1羽 約4.5kg</small></td></tr>
+<tr id="d11-17"><td class="d">11/17</td><td><span class="e" aria-hidden="true">🧅</span>九条ねぎ<small>ねぎ・1束 100g</small></td><td><span class="e" aria-hidden="true">🦔</span>ハリモグラ<small>1匹 約4kg</small></td></tr>
+<tr id="d11-18"><td class="d">11/18</td><td><span class="e" aria-hidden="true">🧄</span>ゆり根<small>1個 80g</small></td><td><span class="e" aria-hidden="true">🐢</span>クサガメ<small>カメ・1匹 約500g</small></td></tr>
+<tr id="d11-19"><td class="d">11/19</td><td><span class="e" aria-hidden="true">🥬</span>ミニ白菜<small>白菜・1玉 600g</small></td><td><span class="e" aria-hidden="true">🐕</span>ポメラニアン<small>イヌ・1匹 約2.5kg</small></td></tr>
+<tr id="d11-20"><td class="d">11/20</td><td><span class="e" aria-hidden="true">🌿</span>わさび<small>1本 100g</small></td><td><span class="e" aria-hidden="true">🦙</span>アルパカ<small>1頭 約60kg</small></td></tr>
+<tr id="d11-21"><td class="d">11/21</td><td><span class="e" aria-hidden="true">🥬</span>紅芯大根<small>だいこん・1個 500g</small></td><td><span class="e" aria-hidden="true">🐿️</span>ニホンモモンガ<small>リス・1匹 約150g</small></td></tr>
+<tr id="d11-22"><td class="d">11/22</td><td><span class="e" aria-hidden="true">🧅</span>玉ねぎ<small>1個 200g</small></td><td><span class="e" aria-hidden="true">🐈</span>メインクーン<small>ネコ・1匹 約7kg</small></td></tr>
+<tr id="d11-23"><td class="d">11/23</td><td><span class="e" aria-hidden="true">🥔</span>長いも<small>やまいも・1本 800g</small></td><td><span class="e" aria-hidden="true">🐫</span>フタコブラクダ<small>ラクダ・1頭 約600kg</small></td></tr>
+<tr id="d11-24"><td class="d">11/24</td><td><span class="e" aria-hidden="true">🥕</span>にんじん<small>1本 150g</small></td><td><span class="e" aria-hidden="true">🐐</span>シロイワヤギ<small>ヤギ・1頭 約90kg</small></td></tr>
+<tr id="d11-25"><td class="d">11/25</td><td><span class="e" aria-hidden="true">🥬</span>青首だいこん<small>だいこん・1本 1kg</small></td><td><span class="e" aria-hidden="true">🐍</span>ガラガラヘビ<small>ヘビ・1匹 約2kg</small></td></tr>
+<tr id="d11-26"><td class="d">11/26</td><td><span class="e" aria-hidden="true">🍎</span>王林<small>りんご・1個 300g</small></td><td><span class="e" aria-hidden="true">🐸</span>ニホンアマガエル<small>カエル・1匹 約4g</small></td></tr>
+<tr id="d11-27"><td class="d">11/27</td><td><span class="e" aria-hidden="true">🥝</span>ヘイワード<small>キウイ・1個 100g</small></td><td><span class="e" aria-hidden="true">🐕</span>秋田犬<small>イヌ・1頭 約40kg</small></td></tr>
+<tr id="d11-28"><td class="d">11/28</td><td><span class="e" aria-hidden="true">🍊</span>青島みかん<small>みかん・1個 120g</small></td><td><span class="e" aria-hidden="true">🐦</span>ツバメ<small>1羽 約19g</small></td></tr>
+<tr id="d11-29"><td class="d">11/29</td><td><span class="e" aria-hidden="true">🥬</span>小かぶ<small>かぶ・1個 80g</small></td><td><span class="e" aria-hidden="true">🦃</span>シチメンチョウ<small>1羽 約9kg</small></td></tr>
+<tr id="d11-30"><td class="d">11/30</td><td><span class="e" aria-hidden="true">🍎</span>こうとく<small>りんご・1個 300g</small></td><td><span class="e" aria-hidden="true">🐦</span>メジロ<small>1羽 約11g</small></td></tr>
+</tbody></table></section>
+<section id="m12"><h2>12月</h2><table><thead><tr><th>日</th><th>きょうの旬</th><th>きょうの動物</th></tr></thead><tbody>
+<tr id="d12-1"><td class="d">12/1</td><td><span class="e" aria-hidden="true">🍊</span>紀州みかん<small>みかん・1個 40g</small></td><td><span class="e" aria-hidden="true">🐕</span>柴犬<small>イヌ・1匹 約9kg</small></td></tr>
+<tr id="d12-2"><td class="d">12/2</td><td><span class="e" aria-hidden="true">🥔</span>自然薯<small>やまいも・1本 1kg</small></td><td><span class="e" aria-hidden="true">🦭</span>マナティー<small>1頭 約500kg</small></td></tr>
+<tr id="d12-3"><td class="d">12/3</td><td><span class="e" aria-hidden="true">🥬</span>壬生菜<small>1株 300g</small></td><td><span class="e" aria-hidden="true">🐈</span>ベンガルヤマネコ<small>ヤマネコ・1匹 約4kg</small></td></tr>
+<tr id="d12-4"><td class="d">12/4</td><td><span class="e" aria-hidden="true">🍊</span>ゆら早生<small>みかん・1個 100g</small></td><td><span class="e" aria-hidden="true">🐹</span>ゴールデンハムスター<small>ハムスター・1匹 約120g</small></td></tr>
+<tr id="d12-5"><td class="d">12/5</td><td><span class="e" aria-hidden="true">🥬</span>大阪しろな<small>1束 200g</small></td><td><span class="e" aria-hidden="true">🐎</span>サラブレッド<small>ウマ・1頭 約480kg</small></td></tr>
+<tr id="d12-6"><td class="d">12/6</td><td><span class="e" aria-hidden="true">🍓</span>もういっこ<small>いちご・1粒 20g</small></td><td><span class="e" aria-hidden="true">🦡</span>ラーテル<small>1匹 約10kg</small></td></tr>
+<tr id="d12-7"><td class="d">12/7</td><td><span class="e" aria-hidden="true">🥬</span>守口だいこん<small>だいこん・1本 1kg</small></td><td><span class="e" aria-hidden="true">🦙</span>ラマ<small>1頭 約150kg</small></td></tr>
+<tr id="d12-8"><td class="d">12/8</td><td><span class="e" aria-hidden="true">🌿</span>堀川ごぼう<small>ごぼう・1本 1kg</small></td><td><span class="e" aria-hidden="true">🐟</span>アンコウ<small>1尾 約10kg</small></td></tr>
+<tr id="d12-9"><td class="d">12/9</td><td><span class="e" aria-hidden="true">🥬</span>ちぢみゆきな<small>1株 200g</small></td><td><span class="e" aria-hidden="true">🐦</span>キーウィ<small>1羽 約2.5kg</small></td></tr>
+<tr id="d12-10"><td class="d">12/10</td><td><span class="e" aria-hidden="true">🍊</span>黄金柑<small>かんきつ・1個 80g</small></td><td><span class="e" aria-hidden="true">🐾</span>フェレット<small>1匹 約1kg</small></td></tr>
+<tr id="d12-11"><td class="d">12/11</td><td><span class="e" aria-hidden="true">🍓</span>さちのか<small>いちご・1粒 20g</small></td><td><span class="e" aria-hidden="true">🐖</span>ヨークシャー<small>ブタ・1頭 約250kg</small></td></tr>
+<tr id="d12-12"><td class="d">12/12</td><td><span class="e" aria-hidden="true">🥬</span>コールラビ<small>1個 300g</small></td><td><span class="e" aria-hidden="true">🦎</span>ニホントカゲ<small>トカゲ・1匹 約10g</small></td></tr>
+<tr id="d12-13"><td class="d">12/13</td><td><span class="e" aria-hidden="true">🍊</span>甘平<small>かんきつ・1個 300g</small></td><td><span class="e" aria-hidden="true">🦊</span>キタキツネ<small>キツネ・1匹 約6kg</small></td></tr>
+<tr id="d12-14"><td class="d">12/14</td><td><span class="e" aria-hidden="true">🍓</span>あまりん<small>いちご・1粒 30g</small></td><td><span class="e" aria-hidden="true">🐚</span>サザエ<small>貝・1個 約150g</small></td></tr>
+<tr id="d12-15"><td class="d">12/15</td><td><span class="e" aria-hidden="true">🍊</span>じゃばら<small>かんきつ・1個 100g</small></td><td><span class="e" aria-hidden="true">🦉</span>フクロウ<small>1羽 約600g</small></td></tr>
+<tr id="d12-16"><td class="d">12/16</td><td><span class="e" aria-hidden="true">🥬</span>サボイキャベツ<small>キャベツ・1玉 1kg</small></td><td><span class="e" aria-hidden="true">🦧</span>オランウータン<small>1頭 約60kg</small></td></tr>
+<tr id="d12-17"><td class="d">12/17</td><td><span class="e" aria-hidden="true">🧅</span>深谷ねぎ<small>ねぎ・1本 150g</small></td><td><span class="e" aria-hidden="true">🦦</span>ユーラシアカワウソ<small>カワウソ・1匹 約8kg</small></td></tr>
+<tr id="d12-18"><td class="d">12/18</td><td><span class="e" aria-hidden="true">🥬</span>チコリ<small>1個 100g</small></td><td><span class="e" aria-hidden="true">🦭</span>ミナミゾウアザラシ<small>アザラシ・1頭 約3㌧</small></td></tr>
+<tr id="d12-19"><td class="d">12/19</td><td><span class="e" aria-hidden="true">🍊</span>三宝柑<small>かんきつ・1個 250g</small></td><td><span class="e" aria-hidden="true">🐎</span>ばん馬<small>ウマ・1頭 約1㌧</small></td></tr>
+<tr id="d12-20"><td class="d">12/20</td><td><span class="e" aria-hidden="true">🍓</span>ゆうべに<small>いちご・1粒 25g</small></td><td><span class="e" aria-hidden="true">🦉</span>シマフクロウ<small>フクロウ・1羽 約3.5kg</small></td></tr>
+<tr id="d12-21"><td class="d">12/21</td><td><span class="e" aria-hidden="true">🥕</span>ミニキャロット<small>にんじん・1本 30g</small></td><td><span class="e" aria-hidden="true">🪲</span>ゲンジボタル<small>ホタル・1匹 約0.2g</small></td></tr>
+<tr id="d12-22"><td class="d">12/22</td><td><span class="e" aria-hidden="true">🍊</span>みはや<small>かんきつ・1個 200g</small></td><td><span class="e" aria-hidden="true">🦜</span>コンゴウインコ<small>インコ・1羽 約1kg</small></td></tr>
+<tr id="d12-23"><td class="d">12/23</td><td><span class="e" aria-hidden="true">🥬</span>かつお菜<small>1株 500g</small></td><td><span class="e" aria-hidden="true">🦗</span>エンマコオロギ<small>コオロギ・1匹 約0.8g</small></td></tr>
+<tr id="d12-24"><td class="d">12/24</td><td><span class="e" aria-hidden="true">🎃</span>栗かぼちゃ<small>かぼちゃ・1個 1.5kg</small></td><td><span class="e" aria-hidden="true">🐈</span>オオヤマネコ<small>ヤマネコ・1匹 約20kg</small></td></tr>
+<tr id="d12-25"><td class="d">12/25</td><td><span class="e" aria-hidden="true">🍊</span>麗紅<small>かんきつ・1個 200g</small></td><td><span class="e" aria-hidden="true">🦘</span>ワラビー<small>カンガルー・1匹 約15kg</small></td></tr>
+<tr id="d12-26"><td class="d">12/26</td><td><span class="e" aria-hidden="true">🍓</span>とちあいか<small>いちご・1粒 25g</small></td><td><span class="e" aria-hidden="true">🦜</span>セキセイインコ<small>インコ・1羽 約35g</small></td></tr>
+<tr id="d12-27"><td class="d">12/27</td><td><span class="e" aria-hidden="true">🥔</span>八つ頭<small>さといも・1個 800g</small></td><td><span class="e" aria-hidden="true">🐧</span>アデリーペンギン<small>ペンギン・1羽 約4.5kg</small></td></tr>
+<tr id="d12-28"><td class="d">12/28</td><td><span class="e" aria-hidden="true">🥬</span>祝いだいこん<small>だいこん・1本 100g</small></td><td><span class="e" aria-hidden="true">🦀</span>ケガニ<small>カニ・1杯 約500g</small></td></tr>
+<tr id="d12-29"><td class="d">12/29</td><td><span class="e" aria-hidden="true">🧅</span>リーキ<small>ねぎ・1本 400g</small></td><td><span class="e" aria-hidden="true">🐕</span>ディンゴ<small>イヌ・1匹 約15kg</small></td></tr>
+<tr id="d12-30"><td class="d">12/30</td><td><span class="e" aria-hidden="true">🍊</span>有田みかん<small>みかん・1個 100g</small></td><td><span class="e" aria-hidden="true">🐦</span>シジュウカラ<small>1羽 約15g</small></td></tr>
+<tr id="d12-31"><td class="d">12/31</td><td><span class="e" aria-hidden="true">🌱</span>ブロッコリースプラウト<small>1パック 50g</small></td><td><span class="e" aria-hidden="true">🦕</span>ブラキオサウルス<small>恐竜・1頭 約40㌧</small></td></tr>
+</tbody></table></section>
+
+  <footer>
+    <p>あしたは何で数えるかは、アプリを開いてのお楽しみに。</p>
+    <p><a href="./">サポートページにもどる</a></p>
+  </footer>
+</div>
+<script>
+// きょうの行に色を付けて、月の一覧に「きょう」を足す
+(function () {
+  var now = new Date();
+  var m = now.getMonth() + 1, d = now.getDate();
+  if (m === 2 && d === 29) d = 28;
+  var row = document.getElementById('d' + m + '-' + d);
+  if (!row) return;
+  row.classList.add('now');
+  var nav = document.querySelector('nav');
+  var a = document.createElement('a');
+  a.href = '#' + row.id;
+  a.className = 'today';
+  a.textContent = 'きょう';
+  nav.insertBefore(a, nav.firstChild);
+})();
+</script>
+</body>
+</html>

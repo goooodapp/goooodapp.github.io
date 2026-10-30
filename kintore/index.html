@@ -57,6 +57,9 @@ ul { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap:
 .contact { background: var(--tint); border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; }
 .contact .addr { font-weight: 700; user-select: all; word-break: break-all; }
 small { color: var(--muted); font-size: 14px; }
+/* 付録への入口。説明は付けず、ページのいちばん下にそっと置く */
+.paw { align-self: flex-end; font-size: 13px; text-decoration: none; opacity: .25; filter: grayscale(1); transition: opacity .3s; }
+.paw:hover, .paw:focus-visible { opacity: 1; filter: none; }
 </style>
 </head>
 <body>
@@ -148,6 +151,8 @@ small { color: var(--muted); font-size: 14px; }
     <h3>お問い合わせ先</h3>
     <p>メール：info.goooodapp@gmail.com</p>
   </section>
+
+  <a class="paw" href="365.html" aria-label="365日の旬と動物">🐾</a>
 </div>
 </body>
 </html>
